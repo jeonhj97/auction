@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sangpoomcMapper">
+
+
+   <!-- 리스트  -->
+   <select id="list"  resultType="kr.co.vo.SangpoomcVO">
+   		SELECT		sno,sname,opendate,startprice,img,thumbimg 
+		FROM 		sangpoom
+		ORDER BY 	sno desc
+   </select>
+
+
+<!-- 상품조회 -->
+  <select id="read" parameterType="int" resultType="kr.co.vo.SangpoomcVO">
+ 	SELECT 	sno,sname,img,startprice,scontent,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
+ 	FROM	sangpoom
+ 	WHERE sno=#{sno}
+ </select>  
+
+
+<!-- 입찰  -->
+	<insert id="ipchalinsert" parameterType="kr.co.vo.IpchalVO">
+		INSERT INTO ipchal(ipno,ipprice,userid,sno)
+		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12','2')
+	</insert>
+	
+<!-- 마이페이지 입찰 -->
+	<select id="mypage" resultType="kr.co.vo.IpchalVO">
+		SELECT ipno,userid,sno,ipprice,ipdate
+		FROM ipchal
+		ORDER BY ipno desc
+	</select>
+
+
+
+
+
+
+
+</mapper>
