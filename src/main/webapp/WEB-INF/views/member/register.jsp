@@ -12,9 +12,9 @@
 			})
 			
 			$("#submit").on("click", function(){
-				if($("#userId").val()==""){
+				if($("#userid").val()==""){
 					alert("아이디를 입력해주세요.");
-					$("#userId").focus();
+					$("#userid").focus();
 					return false;
 				}
 				if($("#upw").val()==""){
@@ -42,7 +42,7 @@
 				url : "/member/idcheck",
 				type : "post",
 				dataType : "json",
-				data : {"userId" : $("#userId").val()},
+				data : {"userid" : $("#userid").val()},
 				success : function(data){
 					if(data == 1){
 						alert("중복된 아이디입니다.");
@@ -133,7 +133,7 @@
                 <tr>
                   <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
                   <td>
-                      <input id="userId" name="userId" class="inputTypeText" type="text">
+                      <input id="userid" name="userid" class="inputTypeText" type="text">
                       <div class="eheck_font" id="id_check"></div>
                       <span id="jtext">(영문소문자/숫자, 4~16자)</span>
                       <button class="idChk" type="button" id="idChk" onclick="fn_idcheck();" value="N">중복확인</button>

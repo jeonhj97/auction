@@ -13,8 +13,8 @@
 	<form name='login' method="post" action="/member/login">
 		<c:if test="${member == null}">
 			<div>
-				<label for="userId">아이디</label>
-				<input type="text" id="userId" name="userId">
+				<label for="userid">아이디</label>
+				<input type="text" id="userid" name="userid">
 			</div>
 			<div>
 				<label for="upw">비밀번호</label>

@@ -24,7 +24,7 @@ import kr.co.vo.MemberVO;
 @RequestMapping("/member/*")
 public class MemberController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
 	
 	@Inject
 	MemberService service;
@@ -32,7 +32,7 @@ public class MemberController {
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() throws Exception {
-		logger.info("get register");
+		
 		return "/member/register";
 	}
 	
@@ -41,7 +41,7 @@ public class MemberController {
 	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
-		logger.info("post register");
+	
 		int result = service.idcheck(vo);
 		try {
 			if(result == 1) {
@@ -65,7 +65,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-		logger.info("post login");
+		
 		
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);

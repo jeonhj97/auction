@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- 게시판 글 작성 -->
+	<insert id="register">
+	    INSERT INTO MEMBER(      userid 
+	   					       , upw 
+	   					       , uName
+	   					       , phone
+	   					       , email
+	   					       , grade
+	   					       , zipcode
+	   					       , addr1
+	   					       , addr2
+	   					       , birth 	)
+	                  VALUES(    #{userid} 
+	                 		   , #{upw}
+	                 		   , #{uName}
+	                 		   , #{phone}
+	                 		   , #{email}
+	                 		   , #{grade}
+	                 		   , #{zipcode}
+	                 		   , #{addr1}
+	                 		   , #{addr2}
+	                 		   , #{birth}
+	                 		   )
+    </insert>
+    
+        <!-- 로그인 -->
+	<select id="login" resultType="kr.co.vo.MemberVO">
+		SELECT userid, upw
+		  FROM MEMBER
+		 WHERE userid = #{userid}
+		   AND upw = #{upw}   
+	</select>
+    
+    <select id="idcheck" resultType="int">
+      SELECT COUNT(*) FROM MEMBER
+      WHERE userid = #{userid}
+	</select>
+
+    
+</mapper>
