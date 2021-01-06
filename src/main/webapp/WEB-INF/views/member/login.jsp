@@ -2,43 +2,39 @@
 <%@ include file="../header.jsp"%>	
 <!--  본문 시작   template.jsp-->
 <div class="main">  
-
-   <!-- 로그인 -->
-        <div class="loginfull">
-            <form>
-                <div class="login">
-                    <div class="loginWrap">
-                        <fieldset>
-                            <div class="formBox">
-                                <div class="form">
-                                    <input id="member_id" name="member_id" type="text" placeholder="아이디">
-                                    <input id="member_password" name="member_password" type="password" placeholder="비밀번호">
-                                </div>
-                                <div class="option">
-                                    <span class="auto"></span>
-                                    <input id="use_login_keeping0" name="use_login_keeping" fw-filter="" fw-label="로그인상태유지" fw-msg="" onclick="MemberAction.confirmLoginKeeping(this);" value="T" type="checkbox">
-                                    <label for="use_login_keeping0">로그인 상태 유지</label>
-                                    <span class="save"></span>
-                                </div>
-                                <div class="loginbtn">
-                                    <button type="button" class="btnSubmit" onclick="MemberAction.login('member_form_6519139593'); return false;">로그인</button>
-                                    <!--<a href="" onclick="" class="btnEm displaynone">비회원 구매</a>-->
-                                </div>
-                                <div class="loginUtil">
-                                    <a href="/member/id/find_id.html" class="btnLogin2">아이디찾기</a>
-                                    <a href="/member/passwd/find_passwd_info.html" class="btnLogin">비밀번호찾기</a>
-                                    <a href="join.html" class="btnLogin">회원가입</a>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-            </form>
-            <div class="nomember-login">
-                <a href="" id="nomember-login">비회원 주문조회</a>
-            </div>
-        </div>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#logoutBtn").on("click", function(){
+			location.href="logout";
+		})
+		
+	})
+</script>
+	<form name='login' method="post" action="/member/login">
+		<c:if test="${member == null}">
+			<div>
+				<label for="userId">아이디</label>
+				<input type="text" id="userId" name="userId">
+			</div>
+			<div>
+				<label for="upw">비밀번호</label>
+				<input type="password" id="upw" name="upw">
+			</div>
+			<div>
+				<button type="submit">로그인</button>
+				<button type="button">회원가입</button>
+			</div>
+		</c:if>
+		<c:if test="${member != null }">
+			<div>
+				<p>${member.userId}님 환영 합니다.</p>
+				<button id="logoutBtn" type="button">로그아웃</button>
+			</div>
+		</c:if>
+		<c:if test="${msg == false}">
+			<alert style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</alert>>>
+		</c:if>
+	</form>
 </div>
 <!--  본문 끝   -->
 <%@ include file="../footer.jsp"%>
