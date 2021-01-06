@@ -24,6 +24,16 @@
     <title>BOTION</title>
 
 </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+		$("#logoutBtn").on("click", function(){
+			location.href="logout";
+		})
+		
+	})
+</script>
 
 <body>
     <div class="wrapper">
@@ -40,21 +50,32 @@
          <ul id="navbarmenu" class="navbar__menu">
                 <li><a href="/sangpoomc/list">SHOP</a></li>
                 <li><a href="/member/login">LOGIN</a></li>
-                <li><a href="/member/join">JOIN</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/mypage">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                 <li>
+					<c:if test="${member != null}">
+						<p>${member.userid}</p>
+						<button id="logoutBtn" type="button">로그아웃</button>
+					</c:if>
+				</li>
             </ul>
+          
         </nav>
         <!-- 바텀네비게이션바 -->
         <nav class="bottom">
             <ul class="bottom__menu">
               <li><a href="/sangpoomc/list">SHOP</a></li>
                 <li><a href="/member/login">LOGIN</a></li>
-                <li><a href="/member/join">JOIN</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/mypage">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                <li>
+					<c:if test="${member != null}">
+						<p>${member.userid}</p>
+						<button id="logoutBtn" type="button">로그아웃</button>
+					</c:if>
+				</li>
             </ul>
         </nav>
         <!-- 사이드바 -->

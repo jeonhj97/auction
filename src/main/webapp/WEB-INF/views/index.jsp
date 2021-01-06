@@ -29,8 +29,7 @@
             </div>
             <ul id="navbarmenu" class="navbar__menu">
                 <li><a href="/sangpoomc/list">SHOP</a></li>
-                <li><a href="/member/login">LOGIN</a></li>
-                <li><a href="/member/join">JOIN</a></li>
+                <li><a href="/member/login">LOGIN</a></li>              
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
@@ -41,7 +40,6 @@
             <ul class="bottom__menu">
               <li><a href="/sangpoomc/list">SHOP</a></li>
                 <li><a href="/member/login">LOGIN</a></li>
-                <li><a href="/member/join">JOIN</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>

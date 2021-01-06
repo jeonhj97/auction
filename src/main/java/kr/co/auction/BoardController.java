@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.service.BoardService;
+import kr.co.service.MemberService;
 import kr.co.service.ReplyService;
 import kr.co.vo.BoardVO;
 import kr.co.vo.Criteria;
+import kr.co.vo.MemberVO;
 import kr.co.vo.PageMaker;
 import kr.co.vo.ReplyVO;
 import kr.co.vo.SearchCriteria;
@@ -37,10 +39,14 @@ public class BoardController {
 	@Inject
 	ReplyService replyservice;
 	
+	@Inject
+	MemberService memberservice;
+	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception{
+	public void writeView(Model model,MemberVO vo) throws Exception{
 		
+		model.addAttribute(memberservice.login(vo));
 		
 	}
 	
