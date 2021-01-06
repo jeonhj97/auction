@@ -163,7 +163,7 @@ public class BoardController {
 		
 		replyservice.updateReply(vo);
 		
-		rttr.addAttribute("bno", vo.getBoardno());
+		rttr.addAttribute("boardno", vo.getBoardno());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
@@ -191,7 +191,7 @@ public class BoardController {
 		
 		replyservice.deleteReply(vo);
 		
-		rttr.addAttribute("bno", vo.getBoardno());
+		rttr.addAttribute("boardno", vo.getBoardno());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());

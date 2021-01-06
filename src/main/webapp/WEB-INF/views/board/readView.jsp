@@ -8,9 +8,10 @@ $(document).ready(function(){
 	// 수정 
 	$(".update_btn").on("click", function(){
 		formObj.attr("action", "/board/updateView");
-		formObj.attr("method", "get", "post");
+		formObj.attr("method", "get");
 		formObj.submit();				
-	})//click end
+	})
+	
 	
 	// 삭제	
 	$(".delete_btn").on("click", function(){				
@@ -24,19 +25,21 @@ $(document).ready(function(){
 	
 	// 목록
 	$(".list_btn").on("click", function(){
+		
 		location.href = "/board/list?page=${scri.page}"
-			+"&perPageNum=${scri.perPageNum}"
-			+"&searchType=${scri.searchType}&keyword=${scri.keyword}";
-			})		
-	})//click end
+				      +"&perPageNum=${scri.perPageNum}"
+				      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+	})
 	
-
-	//댓글작성
+	
 	$(".replyWriteBtn").on("click", function(){
 		  var formObj = $("form[name='replyForm']");
 		  formObj.attr("action", "/board/replyWrite");
 		  formObj.submit();
-	});
+		});
+	
+
+	
  
 	//댓글 수정 View
 	$(".replyUpdateBtn").on("click", function(){
@@ -60,6 +63,7 @@ $(document).ready(function(){
 
 });//document end
 
+
 </script>
 <div class="main">  				 	
 				<div>
@@ -71,7 +75,7 @@ $(document).ready(function(){
 				  <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 				  <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 				  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 			
-				
+				</form>
 					<table>
 						<tbody>
 					
@@ -106,14 +110,21 @@ $(document).ready(function(){
 									<label for="boardimg">이미지</label><input type="text" id="boardimg" name="boardimg" value="${read.boardimg}" />
 								</td>
 							</tr>		
-						</tbody>			
-					</table>
+						</tbody>	
+						</table>		
+					
 					<div>
-					<button type="submit" class="update_btn">수정</button>
-					<button type="submit" class="delete_btn">삭제</button>
-					<button type="submit" class="list_btn">목록</button>	
+					<button type="button" class="update_btn" >수정</button>
+					<button type="button" class="delete_btn">삭제</button>
+					<button type="button" class="list_btn" >목록</button>	
 					</div>
-				</form>
+					
+					
+					
+					
+				
+				
+				<!-- 댓글 -->
 				<div id="reply">
 				  <ol class="replyList">
 				    <c:forEach items="${replyList}" var="replyList">
@@ -125,33 +136,31 @@ $(document).ready(function(){
 				
 				        <p>${replyList.content}</p>
 				        <div>
-						  <button type="button" class="replyUpdateBtn" data-rno="${replyList.rno}">수정</button>
+						  <button type="button" class="replyUpdateBtn" data-rno="${replyList.rno}" >수정</button>
 						  <button type="button" class="replyDeleteBtn" data-rno="${replyList.rno}">삭제</button>
 						</div>
 				      </li>
 				    </c:forEach>   
 				  </ol>
-				</div>
-				<form name="replyForm" method="post">
-				  <input type="hidden" id="boardno" name="boardno" value="${read.boardno}" />
-				  <input type="hidden" id="page" name="page" value="${scri.page}"> 
- 				  <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-  				  <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
- 				  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-				 
-				  
+				</div>					
 				
-				  <div>
-				    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
-				    <br/>
-				    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
-				  </div>
-				  <div>
-				 	 <button type="submit" class="replyWriteBtn">작성</button>
-				  </div>
+				<form name="replyForm" method="post">
+					  <input type="hidden" id="boardno" name="boardno" value="${read.boardno}" />
+					  <input type="hidden" id="page" name="page" value="${scri.page}"> 
+	 				  <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+	  				  <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+	 				  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					 				 
+					  <div>
+					    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
+					    <br/>
+					    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
+					  </div>
+					  <div>
+					 	 <button type="button" class="replyWriteBtn">작성</button>
+					  </div>
 				
 				</form>
-			
 			
 								
 		
