@@ -54,7 +54,7 @@ public class MemberController {
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -75,9 +75,9 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", false);
 		}else {
 			session.setAttribute("member", login);
-			return "/member/login";
+			
 		}
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	
 	// 로그아웃

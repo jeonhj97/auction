@@ -4,6 +4,8 @@
 <div class="main">  
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		
 		$("#logoutBtn").on("click", function(){
 			location.href="logout";
 		})
@@ -22,17 +24,17 @@
 			</div>
 			<div>
 				<button type="submit">로그인</button>
-				<button type="button">회원가입</button>
+				<button type="button" onclick="location.href='/member/register'">회원가입</button>
 			</div>
 		</c:if>
 		<c:if test="${member != null }">
 			<div>
-				<p>${member.userId}님 환영 합니다.</p>
+				<p>${member.userid}님 환영 합니다.</p>
 				<button id="logoutBtn" type="button">로그아웃</button>
 			</div>
 		</c:if>
 		<c:if test="${msg == false}">
-			<alert style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</alert>>>
+			<alert style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</alert>
 		</c:if>
 	</form>
 </div>

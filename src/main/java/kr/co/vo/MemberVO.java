@@ -12,7 +12,7 @@ public class MemberVO {
 	private String zipcode;
 	private String addr1;
 	private String addr2;
-	private Date   birth;
+	private String birth;
 	
 
 	
@@ -73,18 +73,14 @@ public class MemberVO {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	@Override
-	public String toString() {
-		return "MemberVO [userid=" + userid + ", upw=" + upw + ", uname=" + uname + ", phone=" + phone + ", email="
-				+ email + ", grade=" + grade + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", birth=" + birth + "]";
-	}
+	
+	
 	
 	
 	
