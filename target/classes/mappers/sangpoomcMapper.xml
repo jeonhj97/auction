@@ -24,7 +24,7 @@
 <!-- 입찰  -->
 	<insert id="ipchalinsert" parameterType="kr.co.vo.IpchalVO">
 		INSERT INTO ipchal(ipno,ipprice,userid,sno)
-		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12','2')
+		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12','5')
 	</insert>
 	
 <!-- 마이페이지 입찰 -->

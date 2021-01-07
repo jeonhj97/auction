@@ -1,12 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp"%>		
+<%@ include file="../header.jsp"%>	
 <!--  본문 시작   template.jsp-->
 <div class="main">  
 <section id="container">
 				<form name="readForm" method="post">
 				<input type="hidden" id="sno" name="sno" value="${read.sno}" />
+				</form>	
 				
-				</form>
 					<table>
 						<tbody>
 							<tr>
@@ -41,13 +41,13 @@
 							</tr>	
 							<tr>
 								<td>
-									<button type="button" class="ipchal_btn"  onclick="loaction.href='/sangpoomc/ipchalView'">입찰</button>							
+									<button type="button" class="update_btn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}'">입찰</button>					
 								</td>
 							</tr>	
 						</tbody>
 								
 					</table>
-							
+						
 				
 			</section>
 </div>

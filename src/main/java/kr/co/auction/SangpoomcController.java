@@ -41,6 +41,8 @@ public class SangpoomcController {
 		
 		model.addAttribute("read",service.read(sangpoomcvo.getSno()));//이것도 받아오는거잖아
 		
+		System.out.println("----" + service.read(sangpoomcvo.getSno()));
+		
 		return "sangpoomc/readView";
 	}
 	
@@ -50,6 +52,7 @@ public class SangpoomcController {
 	public String ipchalView(Model model,SangpoomcVO sangpoomcvo)throws Exception{
 		
 		model.addAttribute("ipchal",service.read(sangpoomcvo.getSno()));//이것도 받아오는거잖아
+		
 		
 		//service.read(sno);
 		
