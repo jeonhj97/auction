@@ -5,20 +5,19 @@
 <section id="container">
 				<form name="mypageForm" method="get" >
 				
-				
-				
 					<table>
 						<tbody>
 						<tr><td>입찰번호</td><td>아이디</td><td>상품번호</td><td>입찰가</td><td>입찰일지</td></tr>
-						<tr>
-							<td>
-								<label for="ipno">입찰번호</label><input type="text" id="ipno" name="ipno" value="${ipchallist.ipno}"/>
-								<label for="userid">아이디</label><input type="text" id="userid" name="userid" value="${ipchallist.userid}">
-								<label for="sno">상품번호</label><input type="text" id="sno" name="sno" value="${ipchallist.sno}">	
-								<label for="ipprice">입찰가</label><input type="text" id="ipprice" name="ipprice" value="${ipchallist.ipprice}">
-								<label for="ipdate">입찰일지</label><input type="text" id="ipdate" name="ipdate" value="${ipchallist.ipdate}">															
-							</td>
-						</tr>						
+						
+						<c:forEach items="${ipchallist}" var = "ipchallist">
+							<tr>
+								<td><c:out value="${ipchallist.ipno}" /></td>
+								<td><c:out value="${ipchallist.userid}" /></td>							
+								<td><c:out value="${ipchallist.sno}" /></td>
+								<td><c:out value="${ipchallist.ipprice}" /></td>
+								<td><fmt:formatDate value="${ipchallist.ipdate}" pattern="yyyy-MM-dd"/></td>
+							</tr>
+						</c:forEach>					
 						</tbody>												
 					</table>
 					</form>

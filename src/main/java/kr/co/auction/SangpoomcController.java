@@ -78,6 +78,8 @@ public class SangpoomcController {
 	public String ipchallist(Model model, IpchalVO ipchalvo)throws Exception{
 		
 		model.addAttribute("ipchallist",service.ipchallist());
+		
+		System.out.println("----" + service.ipchallist());
 
 		return "sangpoomc/mypageView";
 	}

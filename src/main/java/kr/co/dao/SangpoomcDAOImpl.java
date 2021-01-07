@@ -39,6 +39,7 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 	}//ipchal end
 
 
+	//마이페이지 입찰목록
 	@Override
 	public List<IpchalVO> ipchallist() throws Exception {
 		
