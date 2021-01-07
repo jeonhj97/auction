@@ -3,7 +3,7 @@
 <!--  본문 시작   template.jsp-->
 <div class="main">  
 <section id="container">
-				<form name="readForm" action="post">
+				<form name="readForm" method="post">
 				<input type="hidden" id="sno" name="sno" value="${read.sno}" />
 				
 				</form>
@@ -41,12 +41,13 @@
 							</tr>	
 							<tr>
 								<td>
-									<input type="submit" class="ipchal_btn" value="입찰">	
+									<button type="button" class="ipchal_btn"  onclick="loaction.href='/sangpoomc/ipchalView'">입찰</button>							
 								</td>
-							</tr>
-						</tbody>			
+							</tr>	
+						</tbody>
+								
 					</table>
-					
+							
 				
 			</section>
 </div>

@@ -49,7 +49,7 @@ public class SangpoomcController {
 	@RequestMapping(value="ipchalView",method= RequestMethod.GET )
 	public String ipchalView(Model model,SangpoomcVO sangpoomcvo)throws Exception{
 		
-		model.addAttribute("ipchal1",service.read(sangpoomcvo.getSno()));//이것도 받아오는거잖아
+		model.addAttribute("ipchal",service.read(sangpoomcvo.getSno()));//이것도 받아오는거잖아
 		
 		//service.read(sno);
 		

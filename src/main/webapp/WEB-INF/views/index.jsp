@@ -1,3 +1,4 @@
+<!-- header.jsp -->
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -12,7 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <script defer src="../resources/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <title>BOTION</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- daum 도로명주소 찾기 api --> 
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <title>4Auction</title>
 </head>
 
 <body>
@@ -23,23 +30,30 @@
                 <span></span>
             </div>
             <div id="navbarlogo" class="navbar__logo">
-                <a href="index.html" target="_self">
-                    <img src="resources/images/4auction.png" height="110px" width="550px">
+                <a href="/" target="_self">
+                    <img src="resources/images/mainlogo.png" height="110px" width="550px">
                 </a>
             </div>
             <ul id="navbarmenu" class="navbar__menu">
                 <li><a href="/sangpoomc/list">SHOP</a></li>
-                <li><a href="/member/login">LOGIN</a></li>              
+                <li><a href="/member/login">LOGIN</a></li>
+                <li><a href="/member/register">JOIN</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                <li>
+					<c:if test="${member != null}">
+						<p>${member.userid}</p>
+						<button id="logoutBtn" type="button">로그아웃</button>
+					</c:if>
+				</li>
             </ul>
         </nav>
         <!-- 바텀네비게이션바 -->
         <nav class="bottom">
             <ul class="bottom__menu">
               <li><a href="/sangpoomc/list">SHOP</a></li>
-                <li><a href="/member/login">LOGIN</a></li>
+                <li><a href="/member/login">LOGIN</a></li><li><a href="/member/register">JOIN</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
@@ -57,70 +71,88 @@
         </div>
         <div class="sidebar__overlay">
         </div>
+<!-- header.jsp end -->
+        
         <!-- 메인 -->
         <div class="main">
             <div class="product">
                 <div class="product__list">
-                    <a href="" alt="FIGHT">
-                        <div class="title">싸움</div>
+                    <a href="" alt="MONARIZA">
+                        <div class="title">모나리자</div>
                         <div class="image">
-                            <img class="product__image" width="1000" height="1000" title="FIGHT" alt="FIGHT" src="resources/images/image1.jpg">
+                            <img class="product__image" width="1000" height="1000" title="MONARIZA" alt="MONARIZA" src="resources/images/1monariza.jpg">
                         </div>
                     </a>
                 </div>
                 <div class="product__list">
-                    <a href="" alt="CHINA">
-                        <div class="title">중국</div>
+                    <a href="" alt="FLOWER">
+                        <div class="title">해바라기</div>
                         <div class="image">
-                            <img class="product__image" width="1000" height="1000" title="CHINA" alt="CHINA" src="resources/images/image5.jpg">
+                            <img class="product__image" width="1000" height="1000" title="FLOWER" alt="FLOWER" src="resources/images/2flower.jpg">
                         </div>
                     </a>
                 </div>
                 <div class="product__list">
-                    <a href="" alt="STREET">
-                        <div class="title">거리</div>
+                    <a href="" alt="SCREAM">
+                        <div class="title">절규</div>
                         <div class="image">
-                            <img class="product__image" width="1000" height="1000" title="STREET" alt="STREET" src="resources/images/image6.jpg">
+                            <img class="product__image" width="1000" height="1000" title="SCREAM" alt="SCREAM" src="resources/images/3scream.jpg">
                         </div>
                     </a>
                 </div>
                 <div class="product__list">
-                    <a href="" alt="CAR">
-                        <div class="title">자동차</div>
+                    <a href="" alt="CAT">
+                        <div class="title">황묘농접</div>
                         <div class="image">
-                            <img class="product__image" width="1000" height="1000" title="CAR" alt="CAR" src="resources/images/image7.jpg">
+                            <img class="product__image" width="1000" height="1000" title="CAT" alt="CAT" src="resources/images/4cat.jpg">
                         </div>
                     </a>
                 </div>
                 <div class="product__list">
-                    <a href="" alt="HIHI">
-                        <div class="title">HIHI</div>
+                    <a href="" alt="SSIRM">
+                        <div class="title">씨름도</div>
                         <div class="image">
-                            <img class="product__image" width="1000" height="1000" title="HIHI" alt="HIHI" src="resources/images/image2.jpg">
+                            <img class="product__image" width="1000" height="1000" title="SSIRM" alt="SSIRM" src="resources/images/5ssirm.jpg">
                         </div>
                     </a>
                 </div>
                 <div class="product__list">
-                  <a href="" alt="BOTTOM">
-                      <div class="title">BOTTOM</div>
+                  <a href="" alt="COW">
+                      <div class="title">황소</div>
                       <div class="image">
-                          <img class="product__image" width="1000" height="1000" title="BOTTOM" alt="BOTTOM" src="resources/images/image3.jpg">
+                          <img class="product__image" width="1000" height="1000" title="COW" alt="COW" src="resources/images/6cow.jpg">
                       </div>
                   </a>
-              </div>
+                </div>
                 <div class="product__list">
-                  <a href="" alt="BOTTOM">
-                      <div class="title">BOTTOM</div>
+                  <a href="" alt="APPLE">
+                      <div class="title">사과와 오렌지</div>
                       <div class="image">
-                          <img class="product__image" width="1000" height="1000" title="BOTTOM" alt="BOTTOM" src="resources/images/image4.jpg">
+                          <img class="product__image" width="1000" height="1000" title="APPLE" alt="APPLE" src="resources/images/7apple.jpg">
                       </div>
                   </a>
-              </div> 
+                </div>
+                <div class="product__list">
+                  <a href="" alt="SELF">
+                      <div class="title">프랜시스베이컨 자화상</div>
+                      <div class="image">
+                          <img class="product__image" width="1000" height="1000" title="SELF" alt="SELF" src="resources/images/8self.jpg">
+                      </div>
+                  </a>
+                </div>
+                <div class="product__list">
+                  <a href="" alt="WATCH">
+                      <div class="title">기억의 지속</div>
+                      <div class="image">
+                          <img class="product__image" width="1000" height="1000" title="WATCH" alt="WATCH" src="resources/images/9watch.jpg">
+                      </div>  
+                  </a>
+                </div>
             </div>
         </div>
 
 
-        <!-- 푸터 -->
+<!-- footer.jsp -->
         <div class="footer">
             <div class="footercompany">
                 <ul class="info">
@@ -133,8 +165,8 @@
                     <li>CUSTOMER@4Auction.CO.KR</li>
                 </ul>
                 <ul class="util">
-                    <li>© 2020-2021 4Aution.</li>
-                    <li>SITE BY <a href="" target="_blank">4Aution</a></li>
+                    <li>© 2020-2021 4Auction</li>
+                    <li>SITE BY <a href="" target="_blank">4Auction</a></li>
                 </ul>
             </div>
         </div>
@@ -142,3 +174,4 @@
 </body>
 
 </html>
+<!-- footer.jsp end -->
