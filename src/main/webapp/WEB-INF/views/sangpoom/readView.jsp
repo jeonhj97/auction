@@ -57,6 +57,7 @@ $(document).ready(function(){
 				</form>
 					<table>
 						<tbody>
+							<c:if test="${member.userid != null}">
 							<tr>
 								<td>
 									<label for="sno">상품번호</label><input type="text" id="sno" name="sno" value="${read.sno}" readonly/>
@@ -86,7 +87,12 @@ $(document).ready(function(){
 								<td>
 									<label for="nowprice">현재가격</label><input type="text" id="startprice" name="startprice" value="${read.startprice}" readonly/>													
 								</td>
-							</tr>		
+							</tr>
+							</c:if>	
+							<c:if test="${member.userid == null}">
+								<p>로그인 후에 작성하실 수 있습니다.</p>
+								<button type="button" onclick="location.href='/member/login'">로그인</button>
+							</c:if>		
 						</tbody>			
 					</table>
 					<div>
@@ -94,7 +100,8 @@ $(document).ready(function(){
 					<button type="submit" class="delete_btn">삭제</button>
 					<button type="submit" class="list_btn">목록</button>	
 				</div>
-				
+		
+			
 			
 </div>
 <!--  본문 끝   -->

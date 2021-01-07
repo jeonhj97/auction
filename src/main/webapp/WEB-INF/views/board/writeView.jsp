@@ -32,6 +32,7 @@ function fn_valiChk(){
 				<form name="writeForm" role="form" method="post" action="/board/write">
 					<table>
 						<tbody>
+						<c:if test="${member.userid != null}">
 							<tr>
 								<td>
 									<label for="title">제목</label><input type="text" id="title" name="title" class="chk" title="제목을 입력하세요"/>
@@ -52,7 +53,12 @@ function fn_valiChk(){
 								<td>						
 									<button type="submit" class="write_btn">작성</button>
 								</td>
-							</tr>			
+							</tr>
+							</c:if>	
+							<c:if test="${member.userid == null}">
+								<p>로그인 후에 작성하실 수 있습니다.</p>
+								<button type="button" onclick="location.href='/member/login'">로그인</button>
+							</c:if>			
 						</tbody>			
 					</table>
 				</form>
@@ -61,6 +67,8 @@ function fn_valiChk(){
 </div>
 <!--  본문 끝   -->
 <%@ include file="../footer.jsp"%>
+
+
 
 
 

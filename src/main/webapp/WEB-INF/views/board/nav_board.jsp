@@ -3,7 +3,7 @@
 <div>
 	<div>
 		<a href="/board/list">리스트</a>
-		<a href="/board/writeView">상품등록</a>
+		<a href="/board/writeView">글쓰기</a>
 	</div>
 </div>
 

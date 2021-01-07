@@ -17,7 +17,7 @@
 	                 		  ,'junjack12'
 	                 		  , #{title}
 	                 		  , #{content}
-	                 		  ,sysdate
+	                 		  ,	sysdate
 	                 		  , #{boardimg}  )
    
    </insert>

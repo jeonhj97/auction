@@ -44,9 +44,9 @@ public class BoardController {
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "writeView", method = RequestMethod.GET)
-	public void writeView(Model model,MemberVO vo) throws Exception{
+	public void writeView(Model model) throws Exception{
 		
-		model.addAttribute(memberservice.login(vo));
+		
 		
 	}
 	

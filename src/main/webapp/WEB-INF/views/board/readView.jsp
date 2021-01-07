@@ -68,7 +68,9 @@ $(document).ready(function(){
 <div class="main">  				 	
 				<div>
 					<%@include file="nav_board.jsp" %>
+					
 				</div>
+				
 				<form name="readForm" role="form" method="post">
 				  <input type="hidden" id="boardno" name="boardno" value="${read.boardno}" />
 				  <input type="hidden" id="page" name="page" value="${scri.page}"> 
@@ -78,7 +80,7 @@ $(document).ready(function(){
 				</form>
 					<table>
 						<tbody>
-					
+							
 							<tr>
 								<td>
 									<label for="boardno">글 번호</label><input type="text" id="boardno" name="boardno" value="${read.boardno}"/>
@@ -110,14 +112,19 @@ $(document).ready(function(){
 									<label for="boardimg">이미지</label><input type="text" id="boardimg" name="boardimg" value="${read.boardimg}" />
 								</td>
 							</tr>		
+						
 						</tbody>	
 						</table>		
 					
+					<c:if test="${member.userid == read.userid}">
 					<div>
 					<button type="button" class="update_btn" >수정</button>
 					<button type="button" class="delete_btn">삭제</button>
 					<button type="button" class="list_btn" >목록</button>	
 					</div>
+					</c:if>	
+					<c:if test="${member.userid != read.userid}">
+						</c:if>	
 					
 					
 					
@@ -143,7 +150,7 @@ $(document).ready(function(){
 				    </c:forEach>   
 				  </ol>
 				</div>					
-				
+				<c:if test="${member.userid != null}">
 				<form name="replyForm" method="post">
 					  <input type="hidden" id="boardno" name="boardno" value="${read.boardno}" />
 					  <input type="hidden" id="page" name="page" value="${scri.page}"> 
@@ -161,8 +168,13 @@ $(document).ready(function(){
 					  </div>
 				
 				</form>
-			
-								
+				</c:if>	
+						<c:if test="${member.userid == null}">
+							<p>로그인 후에 작성하실 수 있습니다.</p>
+							<button type="button" onclick="location.href='/member/login'">로그인</button>
+						</c:if>		
+
+							
 		
 
 
