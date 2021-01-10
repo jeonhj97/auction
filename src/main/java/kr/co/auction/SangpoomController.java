@@ -84,6 +84,8 @@ public class SangpoomController {
 		
 		model.addAttribute("read",service.read(sangpoomvo.getSno()));//이것도 받아오는거잖아
 		
+		
+		
 		return "sangpoom/readView";
 	}
 	

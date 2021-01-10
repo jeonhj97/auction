@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.service.SangpoomcService;
 import kr.co.vo.IpchalVO;
+import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
 
@@ -75,14 +76,27 @@ public class SangpoomcController {
 	
 	
 	@RequestMapping(value="mypageView",method= RequestMethod.GET )
-	public String ipchallist(Model model, IpchalVO ipchalvo)throws Exception{
+	public String ipchallist(Model model, IpchalVO ipchalvo, NakchalVO nakchalvo)throws Exception{
 		
 		model.addAttribute("ipchallist",service.ipchallist());
+		model.addAttribute("nakchallist",service.nakchallist());
 		
-		System.out.println("----" + service.ipchallist());
+		//System.out.println("----" + service.ipchallist());
 
 		return "sangpoomc/mypageView";
 	}
+	
+	@RequestMapping(value="nakchal", method = RequestMethod.POST)
+	public String nakchal(NakchalVO nakchalvo)throws Exception{
+		
+		service.nakchal(nakchalvo);
+		
+		return "redirect:/sangpoomc/list";
+		
+	}
+	
+	
+	
 	
 	
 	

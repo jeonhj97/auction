@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vo.IpchalVO;
+import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
 
@@ -35,7 +36,7 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 	@Override
 	public void ipchal(IpchalVO ipchalvo)throws Exception {
 		
-	 sqlSession.insert("sangpoomcMapper.ipchalinsert",ipchalvo);
+		sqlSession.insert("sangpoomcMapper.ipchalinsert",ipchalvo);
 	}//ipchal end
 
 
@@ -44,6 +45,21 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 	public List<IpchalVO> ipchallist() throws Exception {
 		
 		return sqlSession.selectList("sangpoomcMapper.mypage");
+	}
+
+
+	//낙찰입력
+	@Override
+	public void nakchal(NakchalVO nakchalvo) throws Exception {
+		sqlSession.insert("sangpoomcMapper.nakchalinsert",nakchalvo);
+		
+	}
+
+	//마이페이지 낙찰 리스트
+	@Override
+	public List<NakchalVO> nakchallist() throws Exception {
+		
+		return sqlSession.selectList("sangpoomcMapper.nakchalmypage");
 	}
 	
 	

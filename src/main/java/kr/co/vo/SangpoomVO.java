@@ -10,7 +10,6 @@ public class SangpoomVO {
 	private int sno;
 	private String sname;
 	private Date opendate;
-	private Date closedate;
 	private String scontent;
 	private String status;
 	private int startprice;
@@ -25,6 +24,7 @@ public class SangpoomVO {
 
 	
 
+	
 	
 	
 	
@@ -61,12 +61,7 @@ public class SangpoomVO {
 	public void setOpendate(Date opendate) {
 		this.opendate = opendate;
 	}
-	public Date getClosedate() {
-		return closedate;
-	}
-	public void setClosedate(Date closedate) {
-		this.closedate = closedate;
-	}
+	
 	
 	public String getScontent() {
 		return scontent;
@@ -88,10 +83,11 @@ public class SangpoomVO {
 	}
 	@Override
 	public String toString() {
-		return "SangpoomVO [sno=" + sno + ", sname=" + sname + ", opendate=" + opendate + ", closedate=" + closedate
-				+ ", scontent=" + scontent + ", status=" + status + ", startprice=" + startprice + ", thumbimg="
+		return "SangpoomVO [sno=" + sno + ", sname=" + sname + ", opendate=" + opendate + 
+				 ", scontent=" + scontent + ", status=" + status + ", startprice=" + startprice + ", thumbimg="
 				+ thumbimg + ", img=" + img + "]";
 	}
+	
 	
 	
 	

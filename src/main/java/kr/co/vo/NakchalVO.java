@@ -37,6 +37,9 @@ public class NakchalVO {
 	public void setNakprice(int nakprice) {
 		this.nakprice = nakprice;
 	}
+	
+	
+
 	public Date getNakdate() {
 		return nakdate;
 	}

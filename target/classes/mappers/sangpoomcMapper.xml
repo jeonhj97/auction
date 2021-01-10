@@ -15,16 +15,19 @@
 
 <!-- 상품조회 -->
   <select id="read" parameterType="int" resultType="kr.co.vo.SangpoomcVO">
- 	SELECT 	sno,sname,img,startprice,scontent,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
- 	FROM	sangpoom
- 	WHERE sno=#{sno}
+	  SELECT sno,sname,img,startprice,scontent
+	        ,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
+	        , to_date(opendate,'yyyy/mm/dd')
+	        ,(select to_char(opendate+2,'yyyy/mm/dd') from sangpoom where sno=#{sno}) as closedate
+	  FROM	sangpoom
+	  WHERE sno=#{sno}
  </select>  
 
 
 <!-- 입찰  -->
 	<insert id="ipchalinsert" parameterType="kr.co.vo.IpchalVO">
 		INSERT INTO ipchal(ipno,ipprice,userid,sno)
-		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12','5')
+		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12',#{sno})
 	</insert>
 	
 <!-- 마이페이지 입찰 -->
@@ -33,9 +36,19 @@
 		FROM ipchal
 		ORDER BY ipno desc
 	</select>
+	
+<!-- 낙찰 -->
+	<insert id="nakchalinsert" parameterType="kr.co.vo.NakchalVO">
+		INSERT INTO ipchal(nakno,nakprice,userid,sno,nakchaldate)
+		VALUES((select nvl(max(nakno),0)+1 from nakchal),#{nakprice},'junjack12',#{sno},(select to_date(opendate+2,'yyyy/mm/dd') from sangpoom where sno=#{sno}) as nakdate)
+	</insert>
 
-
-
+<!-- 마이페이지 낙찰 -->
+	<select id="nakchalmypage" resultType="kr.co.vo.NakchalVO">
+		SELECT nakno,userid,sno,nakprice,nakdate
+		FROM nakchal
+		ORDER BY nakno desc
+	</select>
 
 
 

@@ -3,6 +3,7 @@ package kr.co.dao;
 import java.util.List;
 
 import kr.co.vo.IpchalVO;
+import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
 
@@ -20,7 +21,11 @@ public interface SangpoomcDAO {
 	//마이페이지 입찰
 	public List<IpchalVO> ipchallist()throws Exception;
 	
-	
+	//입찰
+	public void nakchal(NakchalVO nakchalvo)throws Exception;
+		
+	//마이페이지 입찰
+	public List<NakchalVO> nakchallist()throws Exception;
 	
 	
 }

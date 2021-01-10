@@ -10,7 +10,7 @@ public class SangpoomcVO {
 	private int sno;
 	private String sname;
 	private Date opendate;
-	private Date closedate;
+	private String closedate;
 	private String scontent;
 	private String status;
 	private int startprice;
@@ -18,6 +18,9 @@ public class SangpoomcVO {
 	private String img;
 	
 	private int nowprice;
+	
+	
+	
 
 	
 	
@@ -69,10 +72,10 @@ public class SangpoomcVO {
 	public void setOpendate(Date opendate) {
 		this.opendate = opendate;
 	}
-	public Date getClosedate() {
+	public String getClosedate() {
 		return closedate;
 	}
-	public void setClosedate(Date closedate) {
+	public void setClosedate(String closedate) {
 		this.closedate = closedate;
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dao.SangpoomcDAO;
 import kr.co.vo.IpchalVO;
+import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
 
@@ -45,6 +46,21 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 	public List<IpchalVO> ipchallist() throws Exception {
 		
 		return dao.ipchallist();
+	}
+
+	//낙찰
+	@Override
+	public void nakchal(NakchalVO nakchalvo) throws Exception {
+		
+		dao.nakchal(nakchalvo);
+		
+	}
+
+	//마이페이지 낙찰
+	@Override
+	public List<NakchalVO> nakchallist() throws Exception {
+		
+		return dao.nakchallist();
 	}
 	
 	

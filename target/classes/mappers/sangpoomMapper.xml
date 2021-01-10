@@ -6,8 +6,22 @@
    
    <!-- 상품등록  -->
    <insert id="insert" parameterType="kr.co.vo.SangpoomVO">
-   		INSERT INTO sangpoom( sno ,sname ,img ,scontent ,startprice,closedate,thumbimg )
-		VALUES((select nvl(max(sno),0)+1 from sangpoom) , #{sname}, #{img}, #{scontent},#{startprice},sysdate,#{thumbimg} )    		   
+   		INSERT INTO sangpoom( sno 
+   							,sname 
+   							,img 
+   							,scontent 
+   							,startprice
+   							,thumbimg
+   							,opendate
+   							)
+		VALUES( (select nvl(max(sno),0)+1 from sangpoom) 
+				, #{sname}
+				, #{img}
+				, #{scontent}
+				,#{startprice}
+				,#{thumbimg}
+				, sysdate)
+				   		   
    </insert>
    
    
@@ -20,7 +34,13 @@
    
    <!-- 상품조회 -->
  <select id="read" parameterType="int" resultType="kr.co.vo.SangpoomVO">
- 	SELECT 	sno,sname,img,startprice,scontent,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
+ 	SELECT 	sno
+ 			,sname
+ 			,img
+ 			,startprice
+ 			,scontent
+ 			,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice 
+ 			, opendate   
  	FROM	sangpoom
  	WHERE sno=#{sno}
  </select>  
