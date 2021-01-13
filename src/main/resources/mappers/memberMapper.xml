@@ -7,7 +7,7 @@
 	<insert id="register">
 	    INSERT INTO MEMBER(      userid 
 	   					       , upw 
-	   					       , uName
+	   					       , uname
 	   					       , phone
 	   					       , email
 	   					       , grade
@@ -17,7 +17,7 @@
 	   					       , birth 	)
 	                  VALUES(    #{userid} 
 	                 		   , #{upw}
-	                 		   , #{uName}
+	                 		   , #{uname}
 	                 		   , #{phone}
 	                 		   , #{email}
 	                 		   , #{grade}

@@ -13,6 +13,7 @@
    							,startprice
    							,thumbimg
    							,opendate
+   							
    							)
 		VALUES( (select nvl(max(sno),0)+1 from sangpoom) 
 				, #{sname}
@@ -20,7 +21,8 @@
 				, #{scontent}
 				,#{startprice}
 				,#{thumbimg}
-				, sysdate)
+				, sysdate
+				)
 				   		   
    </insert>
    
@@ -40,7 +42,8 @@
  			,startprice
  			,scontent
  			,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice 
- 			, opendate   
+ 			, opendate  
+ 			,(select to_char(opendate+2,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
  	FROM	sangpoom
  	WHERE sno=#{sno}
  </select>  

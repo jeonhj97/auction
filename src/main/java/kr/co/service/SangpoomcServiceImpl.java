@@ -62,6 +62,19 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 		
 		return dao.nakchallist();
 	}
+
+	@Override
+	public void sangpoomcdelete(int sno) throws Exception {
+		dao.sangpoomcdelete(sno);
+		
+	}
+
+	//상태수정
+	@Override
+	public void statusupdate(SangpoomcVO sangpoomcvo) throws Exception {
+		dao.statusupdate(sangpoomcvo);
+		
+	}
 	
 	
 	

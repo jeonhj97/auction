@@ -7,7 +7,7 @@
 
    <!-- 리스트  -->
    <select id="list"  resultType="kr.co.vo.SangpoomcVO">
-   		SELECT		sno,sname,opendate,startprice,img,thumbimg 
+   		SELECT		sno,sname,opendate,startprice,img,thumbimg,status 
 		FROM 		sangpoom
 		ORDER BY 	sno desc
    </select>
@@ -17,8 +17,8 @@
   <select id="read" parameterType="int" resultType="kr.co.vo.SangpoomcVO">
 	  SELECT sno,sname,img,startprice,scontent
 	        ,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
-	        , to_date(opendate,'yyyy/mm/dd')
-	        ,(select to_char(opendate+2,'yyyy/mm/dd') from sangpoom where sno=#{sno}) as closedate
+	        , to_date(opendate,'yyyy/mm/dd  ')
+	        ,(select to_char(opendate,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
 	  FROM	sangpoom
 	  WHERE sno=#{sno}
  </select>  
@@ -33,15 +33,21 @@
 <!-- 마이페이지 입찰 -->
 	<select id="mypage" resultType="kr.co.vo.IpchalVO">
 		SELECT ipno,userid,sno,ipprice,ipdate
-		FROM ipchal
+		FROM ipchal 
 		ORDER BY ipno desc
 	</select>
 	
 <!-- 낙찰 -->
 	<insert id="nakchalinsert" parameterType="kr.co.vo.NakchalVO">
-		INSERT INTO ipchal(nakno,nakprice,userid,sno,nakchaldate)
-		VALUES((select nvl(max(nakno),0)+1 from nakchal),#{nakprice},'junjack12',#{sno},(select to_date(opendate+2,'yyyy/mm/dd') from sangpoom where sno=#{sno}) as nakdate)
+	insert into nakchal(nakno,sno,userid,nakprice,nakdate)
+	values( (select nvl(max(nakno),0)+1  from nakchal) 
+        ,#{sno} 
+        ,'junjack12'
+        ,(select max(ipprice) from ipchal where sno=#{sno})
+        ,(select to_char(opendate,'yyyy/mm/dd')  from sangpoom where sno=#{sno})) 
 	</insert>
+	
+		
 
 <!-- 마이페이지 낙찰 -->
 	<select id="nakchalmypage" resultType="kr.co.vo.NakchalVO">
@@ -49,6 +55,20 @@
 		FROM nakchal
 		ORDER BY nakno desc
 	</select>
+	
+	<!-- 삭제 -->
+	 <delete id="nakchaldelete" parameterType="int">
+	 	DELETE 
+	 	FROM  sangpoom
+	 	WHERE sno = #{sno}
+	 </delete>
+	 
+	 <!-- 상태수정 -->
+	<update id="statusupdate" parameterType="kr.co.vo.SangpoomcVO" >
+	update sangpoom
+    set status = 'END'
+    where sno=#{sno}
+	</update>
 
 
 

@@ -20,11 +20,16 @@ public interface SangpoomcService {
 	//마이페이지 입찰
 	public List<IpchalVO> ipchallist()throws Exception;
 	
-	//입찰
+	//낙찰
 	public void nakchal(NakchalVO nakchalvo)throws Exception;
 		
 	//마이페이지 입찰
 	public List<NakchalVO> nakchallist()throws Exception;
 	
+	//삭제
+	public void sangpoomcdelete(int sno)throws Exception;
 	
+	
+	//상태수정
+	public void statusupdate(SangpoomcVO sangpoomcvo)throws Exception;
 }

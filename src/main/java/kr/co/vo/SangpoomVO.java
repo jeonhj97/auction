@@ -16,8 +16,7 @@ public class SangpoomVO {
 	private String thumbimg;
 	private String img;
 
-	
-	
+	private String closedate;
 	
 	
 	
@@ -30,6 +29,13 @@ public class SangpoomVO {
 	
 	
 	
+
+	public String getClosedate() {
+		return closedate;
+	}
+	public void setClosedate(String closedate) {
+		this.closedate = closedate;
+	}
 	public String getThumbimg() {
 		return thumbimg;
 	}

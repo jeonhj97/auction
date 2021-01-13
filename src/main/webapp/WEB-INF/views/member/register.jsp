@@ -1,58 +1,74 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp"%>	
+<%@ include file="../header.jsp"%>   
 <!--  본문 시작   template.jsp-->
 <div class="main">  
 
-	
-		<script type="text/javascript">
-		$(document).ready(function(){
-			// 취소
-			$(".cencle").on("click", function(){
-				location.href = "/";
-			})
-			
-			$("#submit").on("click", function(){
-				if($("#userid").val()==""){
-					alert("아이디를 입력해주세요.");
-					$("#userid").focus();
-					return false;
-				}
-				if($("#upw").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#upw").focus();
-					return false;
-				}
-				if($("#uName").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#uName").focus();
-					return false;
-				}
-				var idChkVal = $("#idcheck").val();
-				if(idChkVal == "N"){
-					alert("중복확인 버튼을 눌러주세요.");
-					return false;
-				}else if(idChkVal == "Y"){
-					$("#regForm").submit();
-				}
-			});
-		})
-		
-		function fn_idcheck(){
-			$.ajax({
-				url : "/member/idcheck",
-				type : "post",
-				dataType : "json",
-				data : {"userid" : $("#userid").val()},
-				success : function(data){
-					if(data == 1){
-						alert("중복된 아이디입니다.");
-					}else if(data == 0){
-						$("#idcheck").attr("value", "Y");
-						alert("사용가능한 아이디입니다.");
-					}
-				}
-			})
-		}
+   
+      <script type="text/javascript">
+      
+      
+      $(document).ready(function(){
+
+         
+         // 취소
+         $(".cencle").on("click", function(){
+            location.href = "/";
+         })
+         
+         $("#submit").on("click", function(){
+            if($("#userid").val()==""){
+               alert("아이디를 입력해주세요.");
+               $("#userid").focus();
+               return false;
+            }
+            if($("#upw").val()==""){
+               alert("비밀번호를 입력해주세요.");
+               $("#upw").focus();
+               return false;
+            }
+            if($("#uname").val()==""){
+               alert("성명을 입력해주세요.");
+               $("#uname").focus();
+               return false;
+            }
+            // 비번확인
+            if($("#upw").val() !== $("#upwcfm").val()){
+               alert("비밀번호를 확인해주세요");
+               $("#upwcfm").focus();
+               return false;
+            }
+            
+            var idChkVal = $("#idChk").val();
+            if(idChkVal == "N"){
+               alert("중복확인 버튼을 눌러주세요.");
+               return false;
+            }else if(idChkVal == "Y"){
+               alert("회원가입 ㅊㅋ");
+               $("#regForm").submit();
+            }
+            
+
+            
+         });
+      })
+      
+      function fn_idChk(){
+         $.ajax({
+            url : "/member/idChk",
+            type : "post",
+            dataType : "json",
+            data : {"userid" : $("#userid").val()},
+            success : function(data){
+               if(data == 1){
+                  $("#userid").val()==""; ///////// 왜 안 되지?
+                  alert("중복된 아이디입니다.");
+               }else if(data == 0){
+                  $("#idChk").attr("value", "Y");
+                  alert("사용가능한 아이디입니다.");
+               }
+            }
+         })
+      }
 
 
 
@@ -112,23 +128,23 @@
         }).open();
     }
 </script>
-		
-		
-	
-	
-	
-	
-	
-	
-	<body>
-	  <div class="wrapper">
-	  <div class="joinWrap">
+      
+      
+   
+   
+   
+   
+   
+   
+   <body>
+     <div class="wrapper">
+     <div class="joinWrap">
       <div class="joinWrap2">
-		<section id="container">
-			<form action="/member/register" method="post">
+      <section id="container">
+         <form action="/member/register" method="post" id="regForm">
             <div class="jtypeWrite2">
-			<table border="1">
-			  <tbody>
+         <table border="1">
+           <tbody>
 <!-- 아이디 -->
                 <tr>
                   <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
@@ -136,7 +152,7 @@
                       <input id="userid" name="userid" class="inputTypeText" type="text">
                       <div class="eheck_font" id="id_check"></div>
                       <span id="jtext">(영문소문자/숫자, 4~16자)</span>
-                      <button class="idChk" type="button" id="idChk" onclick="fn_idcheck();" value="N">중복확인</button>
+                      <button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
                   </td>
                 </tr>
 <!-- 비밀번호 -->
@@ -152,33 +168,33 @@
                         <a href="#none" class="btnClose" tabindex="-1">
                         <img id="btnClose" src="//img.echosting.cafe24.com/skin/base/common/btn_close_tip.gif" alt="닫기"></a>
                       <div class="edge"></div>
-	           		</div>
-	           		<br>
-	       			<span>(영문 대소문자/숫자 4자~16자)</span>
-        		  </td>
-        	    </tr>
+                    </div>
+                    <br>
+                   <span>(영문 대소문자/숫자 4자~16자)</span>
+                </td>
+               </tr>
                 <tr>
-	              <th scope="row">비밀번호 확인 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
-	              <td>
-	                <input id="user_passwd_confirm" name="user_passwd_confirm" fw-filter="isFill&amp;isMatch[upw]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
-	                <span id="pwConfirmMsg"></span> 
-	              </td>
-	            </tr>
+                 <th scope="row">비밀번호 확인 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
+                 <td>
+                   <input id="upwcfm" name="user_passwd_confirm" fw-filter="isFill&amp;isMatch[upw]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                   <span id="pwConfirmMsg"></span> 
+                 </td>
+               </tr>
 <!-- 이름 -->
                 <tr>
                   <th scope="row">이름 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
                   <td>
-                      <input id="uName" name="uName" class="inputTypeText" type="text">
+                      <input id="uname" name="uname" class="inputTypeText" type="text">
                   </td>
                 </tr>
 <!-- 전화번호 -->
                 <tr>
                   <th scope="row">휴대전화 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="phone" name="phone" maxlength="11" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" type="text">
+                 <input id="phone" name="phone" maxlength="11" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" type="text">
                     <button type="button" id="btnVerify" class="btnNormal " onclick="memberVerifyMobile.joinSendVerificationNumber(); return false;">인증번호받기</button>
                     <br>
-        			<span>"-"없이 번호만 입력해주세요</span>
+                 <span>"-"없이 번호만 입력해주세요</span>
                   </td>
                 </tr>
                 
@@ -186,7 +202,7 @@
                 <tr>
                   <th scope="row">이메일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="email" name="email" type="text">
+                 <input id="email" name="email" type="text">
                     <br>
                   </td>
                 </tr>
@@ -195,7 +211,7 @@
                 <tr style="display: none">
                   <th scope="row">회원등급<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="grade" name="grade" type="text" value="CUSTOMER">
+                 <input id="grade" name="grade" type="text" value="CUSTOMER">
                     <br>
                   </td>
                 </tr>
@@ -204,8 +220,8 @@
                 <tr>
                   <th scope="row">우편번호 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td><div class="form-group"> 
-		    	    <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="zipcode" id="zipcode" type="text" readonly="readonly" >
-    				<button type="button" class="btn btn-default" onclick="execDaumPostcode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+                 <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="zipcode" id="zipcode" type="text" readonly="readonly" >
+                <button type="button" class="btn btn-default" onclick="execDaumPostcode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
                     </div>
                   </td>
                 </tr>
@@ -215,7 +231,7 @@
                 <tr>
                   <th scope="row">주소1 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input class="form-control" id="addr1" name="addr1" type="text" readonly="readonly">
+                 <input class="form-control" id="addr1" name="addr1" type="text" readonly="readonly">
                     <br>
                   </td>
                 </tr>
@@ -224,7 +240,7 @@
                 <tr>
                   <th scope="row">주소2 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="addr2" name="addr2" type="text">
+                 <input id="addr2" name="addr2" type="text">
                     <br>
                   </td>
                 </tr>
@@ -232,17 +248,17 @@
                 <tr>
                   <th scope="row">생년월일<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="birth" name="birth" type="date">
+                 <input id="birth" name="birth" type="date">
                     <br>
                   </td>
                 </tr>
 
                 
                 
-	          </tbody>
-			</table>	
-			</div> <!--jtypeWrite2 end-->
-		  <h3 id="allagree">전체 동의</h3>
+             </tbody>
+         </table>   
+         </div> <!--jtypeWrite2 end-->
+        <h3 id="allagree">전체 동의</h3>
                 <div class="ec-base-box gStrong">
                     <p><span class="ec-base-chk"><input type="checkbox" id="all_check" class="check-all"><em class="checkbox"></em></span><label for="all_check"><strong>이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</strong></label></p>
                 </div>
@@ -381,18 +397,23 @@
                     </p>
                 </div>
 
-				 <div class="btnJoinMain">
-					<button type="submit" id="submit">회원가입</button>
-					<button type="reset">취소</button>
-				</div>
-			</form>
-		</section>
-		
-			</div> <!--joinWrap2 end-->
-			</div> <!--joinWrap end-->
-			</div> <!--wrapper end-->
+         </form>
+         <div class="btnJoinMain">
+           <button class="btn btn-success" type="button" id="submit">회원가입</button>
+           <button class="cencle btn btn-danger" type="button">취소</button>
+         </div>
+      </section>
+      
+         </div> <!--joinWrap2 end-->
+         </div> <!--joinWrap end-->
+         </div> <!--wrapper end-->
 
 </div>
+<!--  본문 끝   -->
+<%@ include file="../footer.jsp"%>
+
+
+
 <!--  본문 끝   -->
 <%@ include file="../footer.jsp"%>
 

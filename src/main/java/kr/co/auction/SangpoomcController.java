@@ -86,10 +86,19 @@ public class SangpoomcController {
 		return "sangpoomc/mypageView";
 	}
 	
+	
+	
+	
+	
 	@RequestMapping(value="nakchal", method = RequestMethod.POST)
-	public String nakchal(NakchalVO nakchalvo)throws Exception{
+	public String nakchal(NakchalVO nakchalvo,Model model,SangpoomcVO sangpoomcvo)throws Exception{
 		
+		//System.out.println("=============" + nakchalvo);
+		//System.out.println("=============" + sangpoomcvo);
 		service.nakchal(nakchalvo);
+		service.statusupdate(sangpoomcvo);
+		
+		
 		
 		return "redirect:/sangpoomc/list";
 		
@@ -97,6 +106,23 @@ public class SangpoomcController {
 	
 	
 	
+	@RequestMapping(value="delete", method = RequestMethod.POST)
+	public String delete(SangpoomcVO sangpoomcvo)throws Exception{
+		
+		service.sangpoomcdelete(sangpoomcvo.getSno());	
+		
+		System.out.println("------"+sangpoomcvo.getSno());
+				
+		return "redirect:/sangpoom/list"; 		
+	}
+	
+	@RequestMapping(value="statusupdate",method = RequestMethod.POST)
+	public String statusupdate(SangpoomcVO sangpoomcvo)throws Exception{
+		
+		service.statusupdate(sangpoomcvo);
+		
+		return"redirect:/sangpoomc/list";
+	}
 	
 	
 	

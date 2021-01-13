@@ -1,5 +1,6 @@
 package kr.co.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,6 +54,11 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 	public void nakchal(NakchalVO nakchalvo) throws Exception {
 		sqlSession.insert("sangpoomcMapper.nakchalinsert",nakchalvo);
 		
+		//HashMap<String, String> map=new HashMap<String, String>();
+		//map.put("one", nakno);
+		//map.put("two", "둘");
+		//map.put("three", "셋");
+		
 	}
 
 	//마이페이지 낙찰 리스트
@@ -60,6 +66,20 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 	public List<NakchalVO> nakchallist() throws Exception {
 		
 		return sqlSession.selectList("sangpoomcMapper.nakchalmypage");
+	}
+
+	//삭제
+	@Override
+	public void sangpoomcdelete(int sno) throws Exception {
+		sqlSession.delete("sangpoomcMapper.nakchaldelete",sno);
+		
+	}
+
+
+	@Override
+	public void statusupdate(SangpoomcVO sangpoomcvo) throws Exception {
+		sqlSession.update("sangpoomcMapper.statusupdate",sangpoomcvo);
+		
 	}
 	
 	
