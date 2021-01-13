@@ -41,7 +41,7 @@
                             <tr>
                                 <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
                                 <td>
-                                    <input id="member_id" name="member_id" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" class="inputTypeText" type="text">
+                                    <input id="userid" name="userid" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" class="inputTypeText" type="text">
                                     <span id="idMsg" class="error" style="display: block">아이디를 입력해 주세요.</span>
                                     <span id="jtext">(영문소문자/숫자, 4~16자)<span>
                             </td>

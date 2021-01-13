@@ -10,6 +10,26 @@
 			location.href="logout";
 		})
 		
+		$("#registerBtn").on("click", function(){
+			location.href="register";
+		})
+		$("#searchBtn").on("click", function(){
+			location.href="memberSrc";
+		})
+		
+		$("#memberUpdateBtn").on("click", function(){
+			location.href="memberUpdate";
+		})
+		
+		$("#memberDeleteBtn").on("click", function(){
+			location.href="memberDeleteView";
+		})
+		
+		$("#findIdBtn").on("click", function(){
+			location.href="findId";
+		})
+		
+	
 	})
 </script>
 	<form name='login' method="post" action="/member/login">
@@ -24,13 +44,18 @@
 			</div>
 			<div>
 				<button type="submit">로그인</button>
-				<button type="button" onclick="location.href='/member/register'">회원가입</button>
+				<button id="registerBtn" type="button">회원가입</button>
+				<button id="searchBtn" type="button">아이디찾기</button>
+				<button id="findIdBtn" type="button">아이디찾기2</button>
 			</div>
 		</c:if>
 		<c:if test="${member != null }">
 			<div>
 				<p>${member.userid}님 환영 합니다.</p>
+				
+				<button id="memberUpdateBtn" type="button">회원정보수정</button>
 				<button id="logoutBtn" type="button">로그아웃</button>
+				<button id="memberDeleteBtn" type="button">회원탈퇴</button>
 			</div>
 		</c:if>
 		<c:if test="${msg == false}">
