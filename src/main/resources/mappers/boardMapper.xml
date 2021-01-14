@@ -14,7 +14,7 @@
 	   					      ,wdate 
 	   					      ,boardimg )
 	                 VALUES(    board_seq.nextval
-	                 		  ,'junjack12'
+	                 		  , #{userid}
 	                 		  , #{title}
 	                 		  , #{content}
 	                 		  ,	sysdate

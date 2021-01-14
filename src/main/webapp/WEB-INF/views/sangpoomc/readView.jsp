@@ -7,6 +7,7 @@
 	<input type="hidden" id="sno" name="sno" value="${read.sno}"/>
 	
 	
+	
 		<table>
 			<tbody>
 				<tr>
@@ -119,9 +120,12 @@ const countDownTimer = function (id, date) {
 					</td>
 				</tr>	
 				<tr>
-					<td>
-						<button type="button" class="update_btn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}'">입찰</button>	
-						  <button type="submit" class="nakchal_btn">낙찰</button>	
+					<td>					
+						<button type="button" class="update_btn" >입찰</button>	
+						
+
+																			
+						<!-- <button type="submit" class="nakchal_btn">낙찰</button>	 -->
 						<!--  <button type="submit" class="nakchal_btn">삭제</button>	 -->			
 					</td>
 				</tr>	

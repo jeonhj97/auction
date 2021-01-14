@@ -11,7 +11,7 @@
 				<form role="form" method="post" action="/sangpoom/write">
 					
 					<table>
-						<c:if test="${member.userid != null}">
+						<c:if test="${member.grade == 'MASTER'}">
 							<tr><th>상품번호</th><th>상품이미지</th><th>상품명</th><th>시작가</th><th>등록일</th></tr>
 							
 							<c:forEach items="${list}" var = "list">
@@ -24,9 +24,11 @@
 								</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${member.userid == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
-								<button type="button" onclick="location.href='/member/login'">로그인</button>
+						<c:if test="${member.grade != 'MASTER'}">
+							<script>
+									alert("관리자페이지입니다!");
+									location.href='/';
+							</script>
 						</c:if>	
 					</table>
 				</form>

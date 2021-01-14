@@ -7,7 +7,7 @@
 		
 		
 		$("#logoutBtn").on("click", function(){
-			location.href="logout";
+			location.href="member/logout";
 		})
 		
 		$("#registerBtn").on("click", function(){

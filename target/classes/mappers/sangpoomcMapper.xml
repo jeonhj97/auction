@@ -18,7 +18,7 @@
 	  SELECT sno,sname,img,startprice,scontent
 	        ,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
 	        , to_date(opendate,'yyyy/mm/dd  ')
-	        ,(select to_char(opendate,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
+	        ,(select to_char(opendate+1,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
 	  FROM	sangpoom
 	  WHERE sno=#{sno}
  </select>  
@@ -44,7 +44,7 @@
         ,#{sno} 
         ,'junjack12'
         ,(select max(ipprice) from ipchal where sno=#{sno})
-        ,(select to_char(opendate,'yyyy/mm/dd')  from sangpoom where sno=#{sno})) 
+        ,(select to_char(opendate+1,'yyyy/mm/dd')  from sangpoom where sno=#{sno})) 
 	</insert>
 	
 		

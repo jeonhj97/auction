@@ -39,7 +39,7 @@ function fn_valiChk(){
 				<form name="updateForm" role="form" method="post" action="/sangpoom/update">
 					<input type="hidden" name="sno" value="${update.sno}" readonly="readonly"/>
 					<table>
-						<c:if test="${member.userid != null}">
+						<c:if test="${member.grade == 'MASTER'}">
 						<tbody>
 							<tr>
 								<td>
@@ -54,11 +54,13 @@ function fn_valiChk(){
 							
 									
 						</tbody>
-						</c:if>	
-						<c:if test="${member.userid == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
-								<button type="button" onclick="location.href='/member/login'">로그인</button>
-						</c:if>			
+						</c:if>
+							<c:if test="${member.grade != 'MASTER'}">
+							<script>
+									alert("관리자페이지입니다!");
+									location.href='/';
+							</script>
+							</c:if>			
 					</table>
 					<div>
 						<button type="submit" class="update_btn">저장</button>
@@ -74,11 +76,6 @@ function fn_valiChk(){
 <%@ include file="../footer.jsp"%>
 
 
-<c:if test="${member.userid != null}">
-</c:if>	
-<c:if test="${member.userid == null}">
-	<p>로그인 후에 작성하실 수 있습니다.</p>
-	<button type="button" onclick="location.href='/member/login'">로그인</button>
-</c:if>	
+
 
 

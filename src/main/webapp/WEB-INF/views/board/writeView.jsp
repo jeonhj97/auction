@@ -35,6 +35,11 @@ function fn_valiChk(){
 						<c:if test="${member.userid != null}">
 							<tr>
 								<td>
+									<label for="userid">작성자</label><input type="text" id="userid" name="userid" value="${member.userid}" readonly/>
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label for="title">제목</label><input type="text" id="title" name="title" class="chk" title="제목을 입력하세요"/>
 								</td>
 							</tr>	

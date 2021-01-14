@@ -33,7 +33,7 @@ function fn_valiChk_write(){
 				<form name="writeForm" method="post" action="/sangpoom/write" enctype="multipart/form-data">  
 					<table>
 						<tbody>
-						<c:if test="${member.userid != null}">
+						<c:if test="${member.grade == 'MASTER'}">
 							<tr>
 								<td>
 									<label for="sname">상품명</label><input type="text" id="sname" name="sname" class="chk" title="상품명을 입력하세요" />
@@ -75,9 +75,11 @@ function fn_valiChk_write(){
 								</td>
 							</tr>
 							</c:if>
-							<c:if test="${member.userid == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
-								<button type="button" onclick="location.href='/member/login'">로그인</button>
+							<c:if test="${member.grade != 'MASTER'}">
+							<script>
+									alert("관리자페이지입니다!");
+									location.href='/';
+							</script>
 							</c:if>			
 						</tbody>			
 					</table>

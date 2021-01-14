@@ -73,6 +73,7 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
 		
+		
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
@@ -180,20 +181,21 @@ public class MemberController {
 
 		// 아이디 찾기 POST?
 		
-		// 아이디 찾기 POST
-		@RequestMapping(value = "/findId", method = RequestMethod.POST)
-		public String findId(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr, Model model) throws Exception{
-			
-			MemberVO findId = service.findId(vo);
-			
-			if(findId == null) { // 기본값, 잘못된 입력
-				rttr.addFlashAttribute("msg", false);
-			}else { // 옳은 입력값
-				model.addAttribute("member", findId);
-			}
-			
-			return "redirect:/member/findId";
-		}
+	      @RequestMapping(value= "/findId", method = RequestMethod.POST)
+	       public String findId(Model model, MemberVO vo, RedirectAttributes rttr) throws Exception{
+	          MemberVO findId = service.findId(vo);
+	          
+	         if(findId == null) { // 기본값, 잘못된 입력
+	            rttr.addFlashAttribute("msg", false);
+	         }else { // 옳은 입력값
+	            rttr.addFlashAttribute("dto", findId);
+	         }
+	           return "redirect:/member/findId";
+	       }
+		
+		
+		
+		
 		
 	    // 01 회원 목록
 	    // url pattern mapping

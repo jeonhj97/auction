@@ -30,7 +30,7 @@
     
 <!-- 로그인 -->
 	<select id="login" resultType="kr.co.vo.MemberVO">
-		SELECT userid, upw, uname, phone, zipcode, addr1, addr2, birth
+		SELECT userid, upw, uname, phone, zipcode, addr1, addr2, birth ,grade
 		  FROM MEMBER
 		 WHERE userid = #{userid}
 		   AND upw = #{upw}   
@@ -79,9 +79,10 @@
 		  AND phone = #{phone}
 	</select> 
 <!-- 아이디 찾기2 -->
-	<select id="findId" resultType="String">
-		select userid from member 
-        where email = #{email} and phone = #{phone}
+	<select id="findId" resultType="kr.co.vo.MemberVO" parameterType="kr.co.vo.MemberVO">
+		SELECT userid 		
+		FROM member 
+        WHERE email = #{email} AND phone = #{phone}
 	</select>
 	    <!-- 01. 회원록록 -->
     <select id="memberList" resultType="kr.co.vo.MemberVO">

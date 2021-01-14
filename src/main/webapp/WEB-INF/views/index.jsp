@@ -44,7 +44,6 @@
                 <li>
 					<c:if test="${member != null}">
 						<p>${member.userid}</p>
-						<button id="logoutBtn" type="button">로그아웃</button>
 					</c:if>
 				</li>
             </ul>
@@ -57,6 +56,11 @@
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                 <li>
+					<c:if test="${member != null}">
+						<p>${member.userid}</p>
+					</c:if>
+				</li>
             </ul>
         </nav>
         <!-- 사이드바 -->

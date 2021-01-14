@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- 게시판 글 작성 -->
+	<insert id="register">
+	    INSERT INTO MEMBER(      userid 
+	   					       , upw 
+	   					       , uname
+	   					       , phone
+	   					       , email
+	   					       , grade
+	   					       , zipcode
+	   					       , addr1
+	   					       , addr2
+	   					       , birth 	)
+	                  VALUES(    #{userid} 
+	                 		   , #{upw}
+	                 		   , #{uname}
+	                 		   , #{phone}
+	                 		   , #{email}
+	                 		   , #{grade}
+	                 		   , #{zipcode}
+	                 		   , #{addr1}
+	                 		   , #{addr2}
+	                 		   , #{birth}
+	                 		   )
+    </insert>
+    
+<!-- 로그인 -->
+	<select id="login" resultType="kr.co.vo.MemberVO">
+		SELECT userid, upw, uname, phone, zipcode, addr1, addr2, birth
+		  FROM MEMBER
+		 WHERE userid = #{userid}
+		   AND upw = #{upw}   
+	</select>
+    
+<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE userid = #{userid}
+	</select>
+	
+	
+	<!-- 패스워드 체크 -->
+	<select id="passChk" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE userid = #{userid}
+		  AND upw = #{upw}
+	</select>
+
+<!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		UPDATE MEMBER SET
+		upw = #{upw},
+		uname 	= #{uname},
+		phone 	= #{phone},
+        email	= #{email},
+        zipcode = #{zipcode},
+        addr1 	= #{addr1},
+        addr2 	= #{addr2},
+        birth 	= #{birth}
+		WHERE userid = #{userid}
+	</update>
+
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete">
+		DELETE FROM MEMBER
+		WHERE userid = #{userid}
+		  AND upw = #{upw} 
+	</delete>
+	
+<!-- 아이디 찾기 -->
+	<select id="memberSrc" resultType="kr.co.vo.MemberVO">
+		SELECT userid, upw
+		FROM MEMBER
+		WHERE email = #{email}
+		  AND phone = #{phone}
+	</select> 
+<!-- 아이디 찾기2 -->
+	<select id="findId" resultType="String">
+		select userid from member 
+        where email = #{email} and phone = #{phone}
+	</select>
+	    <!-- 01. 회원록록 -->
+    <select id="memberList" resultType="kr.co.vo.MemberVO">
+        SELECT 
+          userid,
+          uname,
+          email,
+          birth
+        FROM MEMBER
+        ORDER BY userid
+    </select>
+	
+	
+	    <!-- 03. 회원정보 상세조회 -->
+    <select id="memberView" resultType="kr.co.vo.MemberVO">
+        SELECT 
+          userid, 
+          uname,
+          email,
+          phone,
+          birth,
+          addr1,
+          addr2
+        FROM MEMBER
+        WHERE userid = #{userid}
+    </select>
+
+    
+</mapper>

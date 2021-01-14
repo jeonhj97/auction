@@ -159,7 +159,7 @@ $(document).ready(function(){
 	 				  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 					 				 
 					  <div>
-					    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
+					    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" readonly value="${member.userid}"/>
 					    <br/>
 					    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
 					  </div>

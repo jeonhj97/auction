@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+     
+     <!-- 게시판 글 작성 -->
+   <insert id="insert">
+	   INSERT INTO 	board(     boardno 
+	   						  ,userid
+	   					      ,title 
+	   					      ,content 
+	   					      ,wdate 
+	   					      ,boardimg )
+	                 VALUES(    board_seq.nextval
+	                 		  ,'junjack12'
+	                 		  , #{title}
+	                 		  , #{content}
+	                 		  ,	sysdate
+	                 		  , #{boardimg}  )
+   
+   </insert>
+   
+   <select id="listPage" resultType="kr.co.vo.BoardVO" parameterType="kr.co.vo.SearchCriteria">
+		SELECT   boardno
+			   , userid			   
+			   , title
+			   , content
+			   , wdate			    
+			   , boardimg
+		  FROM (
+		  		SELECT boardno,
+		  			   title,
+		  			   content,
+		  			   wdate,
+		  			   boardimg,
+		  			   userid,
+		  			   ROW_NUMBER() OVER(ORDER BY boardno DESC)AS RNUM
+	  			   FROM board
+	  			   WHERE 1=1
+		  			   <include refid="search"></include>
+		  			   			 )MP
+		  WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		  ORDER BY boardno DESC
+	</select>
+	
+	<select id="listCount" resultType="int">
+	
+		SELECT COUNT(boardno)
+		  FROM board
+		  WHERE 1=1
+		<include refid="search"></include>	
+		 AND boardno > 0
+
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	
+	
+	<select id="read" parameterType="int" resultType="kr.co.vo.BoardVO">
+		SELECT	boardno
+			  , userid
+			  , title
+			  , content
+			  , wdate
+			  , boardimg
+		 FROM board
+		 WHERE boardno = #{boardno}
+	</select>
+	
+	<update id="update" parameterType="kr.co.vo.BoardVO">
+		UPDATE board
+		   SET title    =   #{title},
+		   	   content  =   #{content}		   	   
+		 WHERE boardno = #{boardno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM board
+		 WHERE boardno = #{boardno}
+	</delete>
+     
+     
+     
+</mapper>
+	
