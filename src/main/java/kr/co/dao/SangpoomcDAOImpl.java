@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.vo.Criteria;
 import kr.co.vo.IpchalVO;
 import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
@@ -32,8 +33,19 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 		
 		return sqlSession.selectOne("sangpoomcMapper.read",sno);
 	}//read end
+	
+	//그림만 가져오기
+	@Override
+	public SangpoomcVO selectimg(int sno) throws Exception {
+		return sqlSession.selectOne("sangpoomcMapper.selectimg",sno);
+	}
+	
 
-
+	
+	
+	
+	
+	//입찰
 	@Override
 	public void ipchal(IpchalVO ipchalvo)throws Exception {
 		
@@ -43,29 +55,31 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 
 	//마이페이지 입찰목록
 	@Override
-	public List<IpchalVO> ipchallist() throws Exception {
+	public List<IpchalVO> ipchallist(Criteria cri) throws Exception {
 		
-		return sqlSession.selectList("sangpoomcMapper.mypage");
+		return sqlSession.selectList("sangpoomcMapper.mypagelist",cri);
 	}
+		
+	//게시물의 총갯수
+	@Override
+	public int listcount() throws Exception {
+		
+		return sqlSession.selectOne("sangpoomcMapper.listCount");
+	}
+	
 
 
 	//낙찰입력
 	@Override
 	public void nakchal(NakchalVO nakchalvo) throws Exception {
 		sqlSession.insert("sangpoomcMapper.nakchalinsert",nakchalvo);
-		
-		//HashMap<String, String> map=new HashMap<String, String>();
-		//map.put("one", nakno);
-		//map.put("two", "둘");
-		//map.put("three", "셋");
-		
 	}
 
 	//마이페이지 낙찰 리스트
 	@Override
-	public List<NakchalVO> nakchallist() throws Exception {
+	public List<NakchalVO> nakchallist(Criteria cri) throws Exception {
 		
-		return sqlSession.selectList("sangpoomcMapper.nakchalmypage");
+		return sqlSession.selectList("sangpoomcMapper.nakchalmypage",cri);
 	}
 
 	//삭제
@@ -81,6 +95,26 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 		sqlSession.update("sangpoomcMapper.statusupdate",sangpoomcvo);
 		
 	}
+
+
+	@Override
+	public int count(IpchalVO ipchalvo) throws Exception {
+		
+		return sqlSession.selectOne("sangpoomcMapper.count",ipchalvo);
+	}
+
+
+	@Override
+	public int nakchalcount() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("sangpoomcMapper.nakchalCount");
+	}
+
+
+	
+
+
+	
 	
 	
 	

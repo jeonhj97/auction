@@ -9,10 +9,20 @@ public class IpchalVO {
 	private String userid;
 	private int ipprice;
 	private Date ipdate;
+	private String selectimg;
+
 	
 	
 	
 	
+	
+	
+	public String getSelectimg() {
+		return selectimg;
+	}
+	public void setSelectimg(String selectimg) {
+		this.selectimg = selectimg;
+	}
 	public int getIpno() {
 		return ipno;
 	}
@@ -46,8 +56,9 @@ public class IpchalVO {
 	@Override
 	public String toString() {
 		return "IpchalVO [ipno=" + ipno + ", sno=" + sno + ", userid=" + userid + ", ipprice=" + ipprice + ", ipdate="
-				+ ipdate + "]";
+				+ ipdate + ", selectimg=" + selectimg + "]";
 	}
+
 	
 	
 	

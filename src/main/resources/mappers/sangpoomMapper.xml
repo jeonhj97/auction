@@ -43,7 +43,7 @@
  			,scontent
  			,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice 
  			, opendate  
- 			,(select to_char(opendate+2,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
+ 			,(select to_char(opendate+1,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
  	FROM	sangpoom
  	WHERE sno=#{sno}
  </select>  

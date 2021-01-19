@@ -2,6 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
+import kr.co.vo.Criteria;
 import kr.co.vo.IpchalVO;
 import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomcVO;
@@ -14,22 +15,38 @@ public interface SangpoomcService {
 	//게시물 조회
 	public SangpoomcVO read(int sno)throws Exception;
 	
+	//그림만 가져오기
+	public SangpoomcVO selectimg(int sno)throws Exception;
+	
+	
+	
 	//입찰
 	public void ipchal(IpchalVO ipchalvo)throws Exception;
 	
 	//마이페이지 입찰
-	public List<IpchalVO> ipchallist()throws Exception;
+	public List<IpchalVO> ipchallist(Criteria cri)throws Exception;
+	
+	//게시물의 총갯수
+	public int listcount() throws Exception;
+	
+	//입찰카운트
+	public int count(IpchalVO ipchalvo)throws Exception;
+	
+	
 	
 	//낙찰
-	public void nakchal(NakchalVO nakchalvo)throws Exception;
-		
-	//마이페이지 입찰
-	public List<NakchalVO> nakchallist()throws Exception;
+	public void nakchal(NakchalVO nakchalvo)throws Exception;		
+	//마이페이지 낙찰
+	public List<NakchalVO> nakchallist(Criteria cri)throws Exception;
+	//게시물의 총갯수
+	public int nakchalcount() throws Exception;
+	
+	
 	
 	//삭제
 	public void sangpoomcdelete(int sno)throws Exception;
-	
-	
 	//상태수정
 	public void statusupdate(SangpoomcVO sangpoomcvo)throws Exception;
+	
+	
 }

@@ -9,10 +9,25 @@ public class NakchalVO {
 	private String userid;
 	private int nakprice;
 	private Date nakdate;
+	private String nakstatus;
+	private String nakimg;
 	
 	
 	
 	
+	
+	public String getNakimg() {
+		return nakimg;
+	}
+	public void setNakimg(String nakimg) {
+		this.nakimg = nakimg;
+	}
+	public String getNakstatus() {
+		return nakstatus;
+	}
+	public void setNakstatus(String nakstatus) {
+		this.nakstatus = nakstatus;
+	}
 	public int getNakno() {
 		return nakno;
 	}
@@ -49,8 +64,10 @@ public class NakchalVO {
 	@Override
 	public String toString() {
 		return "NakchalVO [nakno=" + nakno + ", sno=" + sno + ", userid=" + userid + ", nakprice=" + nakprice
-				+ ", nakdate=" + nakdate + "]";
+				+ ", nakdate=" + nakdate + ", nakstatus=" + nakstatus + ", nakimg=" + nakimg + "]";
 	}
+	
+	
 	
 	
 	

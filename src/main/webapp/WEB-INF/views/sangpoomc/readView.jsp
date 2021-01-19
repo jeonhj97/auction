@@ -5,11 +5,12 @@
 <section id="container">
 	<form name="readForm" method="post" action="/sangpoomc/nakchal" id="frm">
 	<input type="hidden" id="sno" name="sno" value="${read.sno}"/>
-	
+	<input type="hidden" id="userid" name="userid" value="${member.userid}"/>
 	
 	
 		<table>
 			<tbody>
+			<c:if test="${member != null}">
 				<tr>
 					<td>
 						<label for="sno">상품번호</label><input type="text" id="sno" name="sno" value="${read.sno}" readonly/>
@@ -37,7 +38,13 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="nowprice">현재가격</label><input type="text" id="nowprice" name="nowprice" value="${read.nowprice}" readonly/>													
+						<c:if test="${count == 0}">						
+							<label for="nowprice">현재가격</label><input type="text" id="nowprice" name="nowprice" value="${read.startprice}" readonly/>													
+						</c:if>
+						<c:if test="${count>= 1}">							
+							<label for="nowprice">현재가격</label><input type="text" id="nowprice" name="nowprice" value="${read.nowprice}" readonly/>													
+						</c:if>							
+						
 					</td>
 				</tr>
 				<tr>
@@ -121,14 +128,21 @@ const countDownTimer = function (id, date) {
 				</tr>	
 				<tr>
 					<td>					
-						<button type="button" class="update_btn" >입찰</button>	
+						<button type="button" class="update_btn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}&userid=${member.userid}'">입찰</button>	
 						
 
 																			
 						<!-- <button type="submit" class="nakchal_btn">낙찰</button>	 -->
 						<!--  <button type="submit" class="nakchal_btn">삭제</button>	 -->			
 					</td>
-				</tr>	
+				</tr>
+				</c:if>	
+				<c:if test="${member == null}">
+							<script>
+									alert("로그인을 해주세요");
+									location.href='/member/login';
+							</script>
+					</c:if>
 			</tbody>
 					
 		</table>

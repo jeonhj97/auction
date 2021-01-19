@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import kr.co.dao.SangpoomcDAO;
+import kr.co.vo.Criteria;
 import kr.co.vo.IpchalVO;
 import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
@@ -33,6 +34,17 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 		
 		return dao.read(sno);
 	}
+	
+	//그림만 가져오기
+	@Override
+	public SangpoomcVO selectimg(int sno) throws Exception {
+		return dao.selectimg(sno);
+		
+	}
+	
+	
+	
+	
 
 	//입찰
 	@Override
@@ -43,10 +55,18 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 
 	//마이페이지 입찰내역
 	@Override
-	public List<IpchalVO> ipchallist() throws Exception {
+	public List<IpchalVO> ipchallist(Criteria cri) throws Exception {
 		
-		return dao.ipchallist();
+		return dao.ipchallist(cri);
 	}
+	
+	//게시물의 총갯수
+	@Override
+	public int listcount() throws Exception {
+		
+		return dao.listcount();
+	}
+	
 
 	//낙찰
 	@Override
@@ -58,10 +78,23 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 
 	//마이페이지 낙찰
 	@Override
-	public List<NakchalVO> nakchallist() throws Exception {
+	public List<NakchalVO> nakchallist(Criteria cri) throws Exception {
 		
-		return dao.nakchallist();
+		return dao.nakchallist(cri);
 	}
+	
+	@Override
+	public int nakchalcount() throws Exception {
+		
+		return dao.nakchalcount();
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void sangpoomcdelete(int sno) throws Exception {
@@ -75,6 +108,18 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 		dao.statusupdate(sangpoomcvo);
 		
 	}
+
+	@Override
+	public int count(IpchalVO ipchalvo) throws Exception {
+		
+		return dao.count(ipchalvo);
+	}
+
+	
+
+	
+
+	
 	
 	
 	

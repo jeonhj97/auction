@@ -17,8 +17,8 @@
   <select id="read" parameterType="int" resultType="kr.co.vo.SangpoomcVO">
 	  SELECT sno,sname,img,startprice,scontent
 	        ,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
-	        , to_date(opendate,'yyyy/mm/dd  ')
-	        ,(select to_char(opendate+1,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
+	        , to_date(opendate,'yyyy/mm/dd')
+	        ,(select to_char(opendate,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
 	  FROM	sangpoom
 	  WHERE sno=#{sno}
  </select>  
@@ -26,34 +26,73 @@
 
 <!-- 입찰  -->
 	<insert id="ipchalinsert" parameterType="kr.co.vo.IpchalVO">
-		INSERT INTO ipchal(ipno,ipprice,userid,sno)
-		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},'junjack12',#{sno})
+		INSERT INTO ipchal(ipno,ipprice,userid,sno,selectimg)
+		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},#{userid},#{sno},(select img as selectimg from sangpoom where sno=#{sno}))
 	</insert>
 	
-<!-- 마이페이지 입찰 -->
+	
+	<!-- 마이페이지 입찰 페이지-->
+	<select id="mypagelist" resultType="kr.co.vo.IpchalVO" parameterType="kr.co.vo.Criteria">
+		SELECT ipno,userid,sno,ipprice,ipdate,selectimg
+		FROM (
+				SELECT ipno, 
+		               userid, 
+		               sno, 
+		               ipprice, 
+		               ipdate, 
+		               selectimg,
+		               ROW_NUMBER() OVER(ORDER BY ipno DESC) AS RNUM
+		         FROM ipchal 			
+		) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY ipno desc
+	</select>
+	
+	
+	
+<!-- 마이페이지 입찰 
 	<select id="mypage" resultType="kr.co.vo.IpchalVO">
 		SELECT ipno,userid,sno,ipprice,ipdate
 		FROM ipchal 
 		ORDER BY ipno desc
 	</select>
+	-->
 	
 <!-- 낙찰 -->
 	<insert id="nakchalinsert" parameterType="kr.co.vo.NakchalVO">
-	insert into nakchal(nakno,sno,userid,nakprice,nakdate)
+	insert into nakchal(nakno,sno,userid,nakprice,nakdate,nakimg)
 	values( (select nvl(max(nakno),0)+1  from nakchal) 
         ,#{sno} 
-        ,'junjack12'
+        ,#{userid}
         ,(select max(ipprice) from ipchal where sno=#{sno})
-        ,(select to_char(opendate+1,'yyyy/mm/dd')  from sangpoom where sno=#{sno})) 
+        ,(select to_char(opendate+1,'yyyy/mm/dd')  from sangpoom where sno=#{sno})
+        ,(select img as nakimg from sangpoom where sno=#{sno})) 
+        
 	</insert>
 	
 		
 
 <!-- 마이페이지 낙찰 -->
 	<select id="nakchalmypage" resultType="kr.co.vo.NakchalVO">
-		SELECT nakno,userid,sno,nakprice,nakdate
-		FROM nakchal
+		SELECT nakno,userid,sno,nakprice,nakdate,nakstatus,nakimg
+		FROM (
+				SELECT nakno, 
+		               userid, 
+		               sno, 
+		               nakprice, 
+		               nakdate, 
+		               nakstatus,
+		               nakimg,
+		               ROW_NUMBER() OVER(ORDER BY nakno DESC) AS RNUM
+		         FROM nakchal 			
+		) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY nakno desc
+	
+	
+	
+	
+		
 	</select>
 	
 	<!-- 삭제 -->
@@ -69,6 +108,31 @@
     set status = 'END'
     where sno=#{sno}
 	</update>
+	
+	<select id="count"  resultType="int">
+	select count(*)
+	FROM ipchal
+	where sno=#{sno}	
+	</select>
+	
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(ipno)
+		  FROM ipchal
+		 WHERE ipno > 0
+	]]>
+	</select>
+	
+	<select id="nakchalCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(nakno)
+		  FROM nakchal
+		 WHERE nakno > 0
+	]]>
+	</select>
+	
+	
 
 
 
