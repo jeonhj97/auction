@@ -7,6 +7,7 @@ import kr.co.vo.IpchalVO;
 import kr.co.vo.NakchalVO;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
+import kr.co.vo.WishVO;
 
 public interface SangpoomcDAO {
 
@@ -56,6 +57,20 @@ public interface SangpoomcDAO {
 	
 	//상태수정
 	public void statusupdate(SangpoomcVO sangpoomcvo)throws Exception;
+	
+	
+	
+	// 1. 장바구니 추가
+    public void wishinsert(WishVO vo) throws Exception;
+    // 2. 장바구니 목록
+    public List<WishVO> wishlist(String userid) throws Exception;
+    // 3. 장바구니 삭제
+    public void wishdelete(WishVO vo) throws Exception;
+    // 장바구니 중복확인
+    public int wishcount(WishVO vo) throws Exception;
+
+	
+	
 	
 	
 	

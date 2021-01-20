@@ -1,11 +1,18 @@
 package kr.co.auction;
 
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.service.MemberService;
 import kr.co.service.SangpoomcService;
@@ -16,6 +23,7 @@ import kr.co.vo.NakchalVO;
 import kr.co.vo.PageMaker;
 import kr.co.vo.SangpoomVO;
 import kr.co.vo.SangpoomcVO;
+import kr.co.vo.WishVO;
 
 @Controller
 @RequestMapping("/sangpoomc/*")
@@ -166,6 +174,41 @@ public class SangpoomcController {
 		return"redirect:/sangpoomc/list";
 	}
 	
+	 // 1. 찜하기
+    @RequestMapping(value="wishinsert",method = RequestMethod.POST)
+    public String insert(WishVO vo) throws Exception{
+       
+    	
+    	
+        // 장바구니에 기존 상품이 있는지 검사
+        int count = service.wishcount(vo);
+        if(count == 0){
+            // 없으면 insert
+            service.wishinsert(vo);
+        } else {
+            // 있으면 딜리트
+            service.wishdelete(vo);
+        }
+        
+        //System.out.println(vo.getCno());
+        //System.out.println(count);
+
+
+        return "redirect:/sangpoomc/list";
+    }
+
+    // 2. 위시리스트
+    @RequestMapping(value="wishlist", method = RequestMethod.POST)
+    public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
+        String userid = (String) session.getAttribute("userid"); // session에 저장된 userId
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<WishVO> list = service.wishlist(userid); // 장바구니 정보 
+        map.put("list", list);                // 장바구니 정보를 map에 저장
+        map.put("count", list.size());        // 장바구니 상품의 유무
+        mav.setViewName("sangpoomc/wishlist");    // view(jsp)의 이름 저장
+        mav.addObject("map", map);            // map 변수 저장
+        return mav;
+    }
 	
 	
 	

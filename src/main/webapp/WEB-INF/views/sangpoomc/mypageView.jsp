@@ -1,6 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file="../header.jsp"%>	
-
+<style>
+#sangpoomcListImg {
+	width: 200px;
+  	height: 200px;
+}
+</style>
 <!--  본문 시작   template.jsp-->
 <div class="main">  
 <section id="container">
@@ -13,7 +18,7 @@
 						
 						<c:forEach items="${ipchallist}" var = "ipchallist">
 							<tr>
-								<td><img src="${ipchallist.selectimg}"/></td>
+								<td><img id="sangpoomcListImg" src="${ipchallist.selectimg}"/></td>
 								<td><c:out value="${ipchallist.ipno}" /></td>
 								<td><c:out value="${member.userid}" /></td>							
 								<td><c:out value="${ipchallist.sno}" /></td>

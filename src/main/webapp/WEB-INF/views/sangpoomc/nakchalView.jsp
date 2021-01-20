@@ -1,6 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file="../header.jsp"%>	
 <!--  본문 시작   template.jsp-->
+<style>
+#sangpoomcListImg {
+	width: 200px;
+  	height: 200px;
+}
+</style>
 <div class="main">  
 <section id="container">
 				<form name="nakchalForm" method="get" >
@@ -13,7 +19,7 @@
 						
 						<c:forEach items="${nakchallist}" var = "nakchallist">
 							<tr>
-								<td><img src="${nakchallist.nakimg}"/></td>
+								<td><img id="sangpoomcListImg" src="${nakchallist.nakimg}"/></td>
 								<td><c:out value="${member.userid}" /></td>							
 								<td><c:out value="${nakchallist.sno}" /></td>
 								<td><c:out value="${nakchallist.nakprice}" /></td>
