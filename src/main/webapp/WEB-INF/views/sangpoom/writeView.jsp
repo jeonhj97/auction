@@ -68,7 +68,28 @@ function fn_valiChk_write(){
 								<td>
 									<label for="startprice">시작가</label><input type="text" id="startprice" name="startprice" class="chk" title="시작가를 입력하세요"/>
 								</td>
-							</tr>	
+							</tr>
+							<tr>
+								<td>
+									<label for="sartist">작가</label><input type="text" id="sartist" name="sartist" class="chk" title="작가를 입력하세요"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="syear">상품제작년도</label><input type="text" id="syear" name="syear" class="chk" title="상품제작년도를 입력하세요"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="stype">상품종류</label><input type="text" id="stype" name="stype" class="chk" title="상품종류를 입력하세요"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="ssize">상품크기</label><input type="text" id="ssize" name="ssize" class="chk" title="상품크기를 입력하세요"/>
+								</td>
+							</tr>
+								
 							<tr>
 								<td>						
 									<button type="submit" class="write_btn">등록</button>

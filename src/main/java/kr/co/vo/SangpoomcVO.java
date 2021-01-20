@@ -16,6 +16,10 @@ public class SangpoomcVO {
 	private int startprice;
 	private String thumbimg;
 	private String img;
+	private String sartist;
+	private String syear;
+	private String stype;
+	private String ssize;
 	
 	private int nowprice;
 	
@@ -24,6 +28,9 @@ public class SangpoomcVO {
 
 	
 	
+
+	
+	
 	
 	
 	
@@ -35,6 +42,30 @@ public class SangpoomcVO {
 	
 	
 	
+	public String getSartist() {
+		return sartist;
+	}
+	public void setSartist(String sartist) {
+		this.sartist = sartist;
+	}
+	public String getSyear() {
+		return syear;
+	}
+	public void setSyear(String syear) {
+		this.syear = syear;
+	}
+	public String getStype() {
+		return stype;
+	}
+	public void setStype(String stype) {
+		this.stype = stype;
+	}
+	public String getSsize() {
+		return ssize;
+	}
+	public void setSsize(String ssize) {
+		this.ssize = ssize;
+	}
 	public int getNowprice() {
 		return nowprice;
 	}
@@ -101,8 +132,10 @@ public class SangpoomcVO {
 	public String toString() {
 		return "SangpoomcVO [sno=" + sno + ", sname=" + sname + ", opendate=" + opendate + ", closedate=" + closedate
 				+ ", scontent=" + scontent + ", status=" + status + ", startprice=" + startprice + ", thumbimg="
-				+ thumbimg + ", img=" + img + ", nowprice=" + nowprice + "]";
+				+ thumbimg + ", img=" + img + ", sartist=" + sartist + ", syear=" + syear + ", stype=" + stype
+				+ ", ssize=" + ssize + ", nowprice=" + nowprice + "]";
 	}
+	
 	
 	
 	

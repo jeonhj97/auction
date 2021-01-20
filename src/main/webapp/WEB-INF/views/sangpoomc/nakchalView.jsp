@@ -6,6 +6,8 @@
 	width: 200px;
   	height: 200px;
 }
+
+li {list-style: none; float: left; padding: 6px;}
 </style>
 <div class="main">  
 <section id="container">

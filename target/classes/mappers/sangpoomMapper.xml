@@ -13,6 +13,10 @@
    							,startprice
    							,thumbimg
    							,opendate
+   							,sartist
+   							,syear
+   							,stype
+   							,ssize
    							
    							)
 		VALUES( (select nvl(max(sno),0)+1 from sangpoom) 
@@ -22,6 +26,10 @@
 				,#{startprice}
 				,#{thumbimg}
 				, sysdate
+				,#{sartist}
+				,#{syear}
+				,#{stype}
+				,#{ssize}
 				)
 				   		   
    </insert>
@@ -29,7 +37,7 @@
    
    <!-- 리스트  -->
    <select id="list"  resultType="kr.co.vo.SangpoomVO">
-   		SELECT		sno,sname,opendate,startprice,img,thumbimg 
+   		SELECT		sno,sname,opendate,startprice,img,thumbimg,sartist,syear,stype,ssize 
 		FROM 		sangpoom
 		ORDER BY 	sno desc
    </select>
@@ -44,6 +52,10 @@
  			,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice 
  			, opendate  
  			,(select to_char(opendate+1,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
+ 			,syear
+ 			,stype
+ 			,ssize
+ 			,sartist
  	FROM	sangpoom
  	WHERE sno=#{sno}
  </select>  
