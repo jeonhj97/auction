@@ -235,13 +235,13 @@ dd>span {
          <c:if test="${count == 0}">	
             <dt>현재가</dt>
             <dd>
-               <span>KRW ${read.startprice}<input type="hidden" id="nowprice" name="nowprice" value="${read.startprice}" readonly/></span>
+               <span>KRW ${read.startprice}<input type="hidden" id="nowprice" name="nowprice" value="${read.nowprice}" readonly/></span>
             </dd>
           </c:if>
           <c:if test="${count>= 1}">
          	 <dt>현재가</dt>
          	 <dd>
-          		<span>KRW ${read.nowprice}<input type="hidden" id="nowprice" name="nowprice" value="${read.nowprice}" readonly/>	</span>     
+          		<span>KRW ${read.nowprice}<input type="hidden" id="nowprice" name="nowprice" value="${read.nowprice}" readonly/></span>     
           	</dd>   
           </c:if>			
          </dl>
@@ -271,34 +271,26 @@ dd>span {
                   if (distDt < 0) { 
                      clearInterval(timer); 
                      document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!';//
-                     $(document).ready(function(){
-                        
+                     $(document).ready(function(){                       
                         var formObj = $("form[name='readForm']");
-                        
-                        var nowprice = document.getElementById("nowprice").value;
+                        var nowprice = document.getElementById("nowprice").value;                
                         nowprice = nowprice.trim();
-                        if(nowprice==0 || nowprice==null){
+                        if(nowprice==0 || nowprice==null ){
                            alert("해당 경매가 종료 되었습니다!");                  
                            formObj.attr("action", "/sangpoomc/statusupdate");
                            formObj.attr("method", "post");
                            formObj.submit();
+
                            
-                           
-                           
-                        }else               
+                        }else{             
                            // 낙찰 
                            alert("해당 경매가 종료 되었습니다!");
                            formObj.attr("action", "/sangpoomc/nakchal");
                            formObj.attr("method", "post");
                            formObj.submit();
-                           
-                           
-                           
-                           
-                           
-                        //}//if end
-            
-                           
+                                
+                        }//if end
+                                   
                         })
                       return; 
                   }//if end

@@ -11,11 +11,18 @@ public class NakchalVO {
 	private Date nakdate;
 	private String nakstatus;
 	private String nakimg;
+	private String sname;
 	
 	
 	
 	
 	
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
 	public String getNakimg() {
 		return nakimg;
 	}
@@ -64,8 +71,9 @@ public class NakchalVO {
 	@Override
 	public String toString() {
 		return "NakchalVO [nakno=" + nakno + ", sno=" + sno + ", userid=" + userid + ", nakprice=" + nakprice
-				+ ", nakdate=" + nakdate + ", nakstatus=" + nakstatus + ", nakimg=" + nakimg + "]";
+				+ ", nakdate=" + nakdate + ", nakstatus=" + nakstatus + ", nakimg=" + nakimg + ", sname=" + sname + "]";
 	}
+	
 	
 	
 	

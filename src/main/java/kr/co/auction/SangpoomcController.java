@@ -157,13 +157,12 @@ public class SangpoomcController {
 	
 	
 	@RequestMapping(value="delete", method = RequestMethod.POST)
-	public String delete(SangpoomcVO sangpoomcvo)throws Exception{
+	public String delete(Model model,NakchalVO nakchalvo)throws Exception{
 		
-		service.sangpoomcdelete(sangpoomcvo.getSno());	
+		service.nakchaldelete(nakchalvo.getSno());	
 		
-		System.out.println("------"+sangpoomcvo.getSno());
 				
-		return "redirect:/sangpoom/list"; 		
+		return "redirect:/sangpoomc/nakchalView"; 		
 	}
 	
 	@RequestMapping(value="statusupdate",method = RequestMethod.POST)
@@ -197,18 +196,15 @@ public class SangpoomcController {
         return "redirect:/sangpoomc/list";
     }
 
-    // 2. 위시리스트
-    @RequestMapping(value="wishlist", method = RequestMethod.POST)
-    public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
-        String userid = (String) session.getAttribute("userid"); // session에 저장된 userId
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<WishVO> list = service.wishlist(userid); // 장바구니 정보 
-        map.put("list", list);                // 장바구니 정보를 map에 저장
-        map.put("count", list.size());        // 장바구니 상품의 유무
-        mav.setViewName("sangpoomc/wishlist");    // view(jsp)의 이름 저장
-        mav.addObject("map", map);            // map 변수 저장
-        return mav;
-    }
+ // 2. 장바구니 목록
+    @RequestMapping(value="wishlist", method=RequestMethod.GET)
+	public String wishlist(Model model, WishVO vo, SangpoomVO svo)throws Exception{
+		
+		model.addAttribute("wishlist", service.wishlist());
+		
+
+		return "sangpoomc/wishlist";
+	}
 	
 	
 	

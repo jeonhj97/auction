@@ -96,8 +96,8 @@ public class SangpoomcServiceImpl implements SangpoomcService{
 	
 
 	@Override
-	public void sangpoomcdelete(int sno) throws Exception {
-		dao.sangpoomcdelete(sno);		
+	public void nakchaldelete(int sno) throws Exception {
+		dao.nakchaldelete(sno);		
 	}
 	//상태수정
 	@Override
@@ -122,8 +122,8 @@ public class SangpoomcServiceImpl implements SangpoomcService{
     }
     // 2. 장바구니 목록
     @Override
-    public List<WishVO> wishlist(String userid) throws Exception {
-        return dao.wishlist(userid);
+    public List<WishVO> wishlist() throws Exception {
+        return dao.wishlist();
     }
     // 3. 장바구니 삭제
     @Override

@@ -42,6 +42,7 @@
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                <li><a href="/sangpoomc/wishlist">찜하기</a></li>
                 <li>
 					<c:if test="${member != null}">
 						<p>${member.userid}</p>
@@ -58,6 +59,7 @@
                 <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
                 <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
+                <li><a href="/sangpoomc/wishlist">찜하기</a></li>
                  <li>
 					<c:if test="${member != null}">
 						<p>${member.userid}</p>

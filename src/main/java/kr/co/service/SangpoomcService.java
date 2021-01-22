@@ -45,15 +45,15 @@ public interface SangpoomcService {
 	
 	
 	//삭제
-	public void sangpoomcdelete(int sno)throws Exception;
+	public void nakchaldelete(int sno)throws Exception;
 	//상태수정
 	public void statusupdate(SangpoomcVO sangpoomcvo)throws Exception;
 	
 	
 	// 1. 장바구니 추가
     public void wishinsert(WishVO vo) throws Exception;
-    // 2. 장바구니 목록
-    public List<WishVO> wishlist(String userid) throws Exception;
+ // 2. 장바구니 목록
+    public List<WishVO> wishlist() throws Exception;
     // 3. 장바구니 삭제
     public void wishdelete(WishVO vo) throws Exception;
     // 장바구니 중복

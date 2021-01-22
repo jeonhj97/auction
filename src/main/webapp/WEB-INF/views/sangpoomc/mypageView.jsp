@@ -14,10 +14,11 @@
 					<table>
 						<tbody>
 						<c:if test="${member != null}">
-						<tr><td>입찰번호</td><td>아이디</td><td>상품번호</td><td>입찰가</td><td>입찰일지</td></tr>
+						<tr><td>상품명</td><td>입찰번호</td><td>아이디</td><td>상품번호</td><td>입찰가</td><td>입찰일지</td></tr>
 						
 						<c:forEach items="${ipchallist}" var = "ipchallist">
 							<tr>
+								<td><c:out value="${ipchallist.sname}" /></td>
 								<td><img id="sangpoomcListImg" src="${ipchallist.selectimg}"/></td>
 								<td><c:out value="${ipchallist.ipno}" /></td>
 								<td><c:out value="${member.userid}" /></td>							

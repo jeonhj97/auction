@@ -4,6 +4,12 @@
 	<%@ include file="nav.jsp"%>	
 </div>
 <!--  본문 시작   template.jsp-->
+<style>
+#sangpoomcListImg {
+	width: 200px;
+  	height: 200px;
+}
+</style>
 <div class="main">  
 			
 			
@@ -17,7 +23,7 @@
 							<c:forEach items="${list}" var = "list">
 								<tr>
 									<td><c:out value="${list.sno}" /></td>
-									<td><img src="${list.img}"></td>								
+									<td><img id="sangpoomcListImg" src="${list.img}"></td>								
 									<td><a href="/sangpoom/readView?sno=${list.sno}"><c:out value="${list.sname}" /></a></td>
 									<td><c:out value="${list.startprice}" /></td>
 									<td><fmt:formatDate value="${list.opendate}" pattern="yyyy-MM-dd"/></td>

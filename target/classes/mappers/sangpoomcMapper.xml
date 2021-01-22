@@ -30,14 +30,14 @@
 
 <!-- 입찰  -->
 	<insert id="ipchalinsert" parameterType="kr.co.vo.IpchalVO">
-		INSERT INTO ipchal(ipno,ipprice,userid,sno,selectimg)
-		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},#{userid},#{sno},(select img as selectimg from sangpoom where sno=#{sno}))
+		INSERT INTO ipchal(ipno,ipprice,userid,sno,selectimg,sname)
+		VALUES((select nvl(max(ipno),0)+1 from ipchal),#{ipprice},#{userid},#{sno},(select img as selectimg from sangpoom where sno=#{sno}),(select sname from sangpoom where sno=#{sno}))
 	</insert>
 	
 	
 	<!-- 마이페이지 입찰 페이지-->
 	<select id="mypagelist" resultType="kr.co.vo.IpchalVO" parameterType="kr.co.vo.Criteria">
-		SELECT ipno,userid,sno,ipprice,ipdate,selectimg
+		SELECT ipno,userid,sno,ipprice,ipdate,selectimg,sname
 		FROM (
 				SELECT ipno, 
 		               userid, 
@@ -45,6 +45,7 @@
 		               ipprice, 
 		               ipdate, 
 		               selectimg,
+		               sname,
 		               ROW_NUMBER() OVER(ORDER BY ipno DESC) AS RNUM
 		         FROM ipchal 			
 		) MP
@@ -64,13 +65,15 @@
 	
 <!-- 낙찰 -->
 	<insert id="nakchalinsert" parameterType="kr.co.vo.NakchalVO">
-	insert into nakchal(nakno,sno,userid,nakprice,nakdate,nakimg)
+	insert into nakchal(nakno,sno,userid,nakprice,nakdate,nakimg,sname)
 	values( (select nvl(max(nakno),0)+1  from nakchal) 
         ,#{sno} 
         ,#{userid}
         ,(select max(ipprice) from ipchal where sno=#{sno})
-        ,(select to_char(opendate+1,'yyyy/mm/dd')  from sangpoom where sno=#{sno})
-        ,(select img as nakimg from sangpoom where sno=#{sno})) 
+        ,(select to_char(opendate,'yyyy/mm/dd')  from sangpoom where sno=#{sno})
+        ,(select img as nakimg from sangpoom where sno=#{sno})
+        ,(select sname from sangpoom where sno=#{sno})
+        ) 
         
 	</insert>
 	
@@ -78,7 +81,7 @@
 
 <!-- 마이페이지 낙찰 -->
 	<select id="nakchalmypage" resultType="kr.co.vo.NakchalVO">
-		SELECT nakno,userid,sno,nakprice,nakdate,nakstatus,nakimg
+		SELECT nakno,userid,sno,nakprice,nakdate,nakstatus,nakimg,sname
 		FROM (
 				SELECT nakno, 
 		               userid, 
@@ -87,6 +90,7 @@
 		               nakdate, 
 		               nakstatus,
 		               nakimg,
+		               sname,
 		               ROW_NUMBER() OVER(ORDER BY nakno DESC) AS RNUM
 		         FROM nakchal 			
 		) MP
@@ -102,9 +106,22 @@
 	<!-- 삭제 -->
 	 <delete id="nakchaldelete" parameterType="int">
 	 	DELETE 
-	 	FROM  sangpoom
+	 	FROM  nakchal
 	 	WHERE sno = #{sno}
 	 </delete>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	 <!-- 상태수정 -->
 	<update id="statusupdate" parameterType="kr.co.vo.SangpoomcVO" >
@@ -141,9 +158,9 @@
 	 <!-- 1. 장바구니 추가 -->
     <insert id="wishinsert" parameterType="kr.co.vo.WishVO">
         INSERT INTO wish(
-            cno, userid, sno
+            cno, userid, sno , wishimg ,sname
         ) VALUES (
-            (select nvl(max(cno),0)+1 from wish), #{userid}, #{sno}
+            (select nvl(max(cno),0)+1 from wish), #{userid}, #{sno},(select img as wishimg from sangpoom where sno=#{sno}) ,(select sname from sangpoom where sno=#{sno})
         )
     </insert>
     <!-- 2. 장바구니 목록 -->
@@ -151,12 +168,14 @@
         SELECT
             cno, 
             userid,
-            sno
+            sno,
+            wishimg,
+            sname
 
         FROM
             wish
-        WHERE 
-            userid = #{userid}
+        ORDER BY cno desc
+       
     </select>
  <!-- 5. 장바구니 삭제 -->	
     <delete id="wishdelete" parameterType="kr.co.vo.WishVO">

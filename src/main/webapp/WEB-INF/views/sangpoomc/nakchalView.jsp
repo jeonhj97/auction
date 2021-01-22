@@ -2,47 +2,175 @@
 <%@ include file="../header.jsp"%>	
 <!--  본문 시작   template.jsp-->
 <style>
+ul#nakchal_ul{
+	
+}
+
+
+
+li#nakchallist{
+	position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+
+
 #sangpoomcListImg {
 	width: 200px;
   	height: 200px;
+  	vertical-align: middle;
 }
 
-li {list-style: none; float: left; padding: 6px;}
+figure{
+      float: left;
+    width: 260px;
+    height: 260px;
+    line-height: 260px;
+    text-align: center;
+    margin-right: 20px;
+
+}
+
+
+
+
+
+section#nakchal_stat{
+	overflow: hidden;
+    width: 450px;
+    margin-right: 20px;
+
+}
+
+article.main_sno>p{
+
+	font-size: 30px;
+    line-height: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+section#nakchal_sub{
+	padding-bottom: 19px;
+    margin-bottom: 70px;
+
+}
+
+
+dt{
+	width: 103px;
+    height: 24px;
+    border: 1px solid #ccc;
+    background: #fcfcfc;
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    float: left;
+    margin-right: 20px;
+}
+
+
+dd{
+	overflow: hidden;
+    font-size: 18px;
+    line-height: 26px;
+    color: #666;
+}
+
+
+
+
+article#main_sno{
+	display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+
+    
+
+
+
+
+
 </style>
 <div class="main">  
 <section id="container">
-				<form name="nakchalForm" method="get" >
+<form name="nakchalForm" method="get" >
 				
-					<table>
-						<tbody>
-						<c:if test="${member != null}">	
+			<c:if test="${member != null}">													
 						
-						<tr><td>낙찰번호</td><td>아이디</td><td>상품번호</td><td>낙찰가</td><td>낙찰일지</td><td>기능</td></tr>
+						<ul id="nakchal_ul">	
+							<c:forEach items="${nakchallist}" var = "nakchallist">					
+							<li id="nakchallist">
+								<a>
+									<figure>
+										<img id="sangpoomcListImg" src="${nakchallist.nakimg}"/>
+									</figure>
+									
+									
+									
+									
+									<section id="nakchal_stat">										
+										<article class="main_sno">
+											<p><c:out value="${nakchallist.sno}" /></p>								
+										</article>
+									</section>									
+									
+								</a>		
+									
+									
+									
+									
+									<section id="nakchal_sub">
+										<dl>
+											
+											<dd>
+												<c:out value="${nakchallist.sname}" /><input type="hidden" id="nakprice" name="nakprice" value="${nakchallist.nakprice}">
+											</dd>
+										</dl>
+										<dl>
+											<dt>낙찰가</dt>
+											<dd>
+												<span>KRW</span> <c:out value="${nakchallist.nakprice}" /><input type="hidden" id="nakprice" name="nakprice" value="${nakchallist.nakprice}">
+											</dd>
+										</dl>
+										<dl>
+											<dt>낙찰자</dt>
+											<dd>
+												<c:out value="${member.userid}" />	
+											</dd>									
+										</dl>
+										<dl>
+											<dt>낙찰일자</dt>	
+											<dd>									
+												<fmt:formatDate value="${nakchallist.nakdate}" pattern="yyyy-MM-dd"/>								
+											</dd>
+										</dl>
+									</section>													
+							</li>	
+							</c:forEach>																				
+						</ul>		
 						
-						<c:forEach items="${nakchallist}" var = "nakchallist">
-							<tr>
-								<td><img id="sangpoomcListImg" src="${nakchallist.nakimg}"/></td>
-								<td><c:out value="${member.userid}" /></td>							
-								<td><c:out value="${nakchallist.sno}" /></td>
-								<td><c:out value="${nakchallist.nakprice}" /></td>
-								<td><fmt:formatDate value="${nakchallist.nakdate}" pattern="yyyy-MM-dd"/></td>
-								<td><c:out value="${nakchallist.nakstatus}" /></td>
-
-													
+								
+								
 							
-							
-							</tr>
-						</c:forEach>
 						</c:if>	
 						<c:if test="${member == null}">
 								<script>
 										alert("로그인을 해주세요");
 										location.href='/member/login';
 								</script>
-						</c:if>				
-						</tbody>												
-					</table>
-					<div>
+						</c:if>										
+						<div>
 							  <ul>
 							    <c:if test="${pageMaker.prev}">
 							    	<li><a href="nakchalView${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
@@ -57,7 +185,7 @@ li {list-style: none; float: left; padding: 6px;}
 							    </c:if> 
 							  </ul>
 						</div>
-					</form>
+</form>
 </section>
 
 </div>

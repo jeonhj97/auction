@@ -85,7 +85,7 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
 
 	//삭제
 	@Override
-	public void sangpoomcdelete(int sno) throws Exception {
+	public void nakchaldelete(int sno) throws Exception {
 		sqlSession.delete("sangpoomcMapper.nakchaldelete",sno);
 		
 	}
@@ -122,8 +122,8 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
     }
     // 2. 장바구니 목록
     @Override
-    public List<WishVO> wishlist(String userid) {
-        return sqlSession.selectList("sangpoomcMapper.wishlist", userid);
+    public List<WishVO> wishlist() {
+        return sqlSession.selectList("sangpoomcMapper.wishlist");
     }
     // 3. 장바구니 삭제
     @Override
