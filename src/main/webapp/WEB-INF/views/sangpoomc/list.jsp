@@ -129,13 +129,6 @@ article + article {
 
 
 
-#wish_icon{
-	float: right;
-
-	    position: absolute;
-    	top: 489px;
-}
-
 div.footer{
 	float: left;
 }
@@ -144,16 +137,35 @@ div.footer{
 
 
 
-
-
-
-
-
-
 </style>
 
 
+<script>
+	function wish_icon(member){
+		if(member.length==0){
+			alert("로그인이 필요합니다");
+			location.href="/member/login";
+		}else{			
+			
+				alert("상품찜하기가 되었습니다");
+				var formObj_board = $("form[name='form1']");
+				formObj_board.attr("action", "/sangpoomc/wishinsert");
+				formObj_board.attr("method", "post");
+				formObj_board.submit();	
+			
+		}//if end
+	}//wish_icon() end
+	
+	
+	
+	
+	
+	
+	
 
+</script>  
+
+     	
 
 
 <div class="main">
@@ -161,77 +173,33 @@ div.footer{
       <ul id="sangpoomcListUl">
          <div class="sangpoomcList">
           
-               <c:forEach items="${list}" var = "list">
+            <c:forEach items="${list}" var = "list">
                <c:if test="${list.status == 'ING'}">
-                  <li class="sangpoomcListLi">            
-                  	 	  	
-                  	 	<span>
-                  	 		<form name="form1" method="post" action="/sangpoomc/wishinsert" onsubmit="setMemWishinfo()">
+                  <li class="sangpoomcListLi">     
+                 	 <span>
+                  	 		<form name="form1">
 	                  	 		<input type="hidden" name="userid" value="${member.userid}"/>
 	      					 	<input type="hidden" name="sno" value="${list.sno}"/>	      					 	         							         				 	     				 
-	         				 	<img src="../resources/images/zzimhagi.png" id="wish_icon" >      				 
+	         				 	<img src="../resources/images/zzimhagi1.png"  onclick="wish_icon('${member}')" style="cursor:pointer" > 
+	         				   				 
          				 	</form> 
-         				 </span>
-                  	 	
-                  	 	
-<script>
-var formObj_board = $("form[name='form1']");
-
-
-$(document).ready(function(){  
-$("#wish_icon").click(function(){
-	formObj_board.attr("action", "/sangpoomc/wishinsert");
-	formObj_board.attr("method", "post");
-	formObj_board.submit();	
-});//click end
-
-});
-
-
-</script>  
-
-
-<script >
-function setMemWishinfo(){
-	
-	if(${member}==null){
-	alert("로그인이 필요합니다");
-	location.href="/member/login";
-	}//if end
-	
-	      
-}//setMemWifhinfo() end
-
-
-</script>          				 		
-        				
-                  	
+         			 </span>
                      <a href="/sangpoomc/readView?sno=${list.sno}" class="sangpoomcViewBtn">
-                        <figure>
-                           <img id="sangpoomcListImg" src="${list.img}">
-                        </figure>
-                        <section class="information">
-                       
+                        <figure><img id="sangpoomcListImg" src="${list.img}"></figure>
+                     </a>
+                        <section class="information">                       
                            <article class="articleMain">
                               <P class="sno"><c:out value="${list.sno}" /></p>
                               <p class="sname"><c:out value="${list.sname}" /></p>
                               <p class="sartist"><c:out value="${list.sartist}" /></p>
                            </article>
                            <article class="articleSub">
-                           	 
-                           	 	
                            	 	<%-- <form name="form1" method="post" action="/sangpoomc/wishinsert">
           							<input type="hidden" name="userid" value="${member.userid}"/>
        					 			<input type="hidden" name="sno" value="${list.sno}"/>
           				 			<input type="image" id="zzimhagi" src="../resources/images/zzimhagi.png">
           				 		</form>   --%>
-          				 		
-          				 	
-          				 	
-                           	 	
-                           	 	
-                           	 
-                              <P class="syear"><c:out value="${list.syear}" /></p>
+                              <p class="syear"><c:out value="${list.syear}" /></p>
                               <P class="stype"><c:out value="${list.stype}" /></p>
                               <P class="ssize"><c:out value="${list.ssize}" /></p>
                            </article>
@@ -268,11 +236,9 @@ function setMemWishinfo(){
                            <dt >경매상태</dt>
                            <dd><c:out value="${list.status}" /></dd>
                         </section>
-                     
                   </li>
                   </c:if>
                </c:forEach>
-            </form>
          </div>
       </ul>
    </div>

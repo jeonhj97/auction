@@ -43,10 +43,14 @@ public class SangpoomcController {
 
 	//리스트
 	@RequestMapping(value="list",method= RequestMethod.GET )
-	public String list(SangpoomcVO sangpoomcvo,Model model,IpchalVO ipchalvo)throws Exception{
+	public String list(SangpoomcVO sangpoomcvo,Model model,IpchalVO ipchalvo )throws Exception{
 		
 		model.addAttribute("list",service.list());//이것도 받아오는거잖아
 		model.addAttribute("count",service.count(ipchalvo));
+		
+		
+		
+		//System.out.println(service.count(ipchalvo));
 		
 		return "sangpoomc/list";
 	}
@@ -176,7 +180,7 @@ public class SangpoomcController {
 	
 	 // 1. 찜하기
     @RequestMapping(value="wishinsert",method = RequestMethod.POST)
-    public String insert(WishVO vo) throws Exception{
+    public String insert(WishVO vo,Model model) throws Exception{
        
     	
     	
@@ -190,8 +194,10 @@ public class SangpoomcController {
             service.wishdelete(vo);
         }
         
+        model.addAttribute("count",service.wishcount(vo));
+        
         //System.out.println(vo.getCno());
-        //System.out.println(count);
+        //System.out.println(service.wishcount(vo));
 
 
         return "redirect:/sangpoomc/list";

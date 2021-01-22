@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <script defer src="../resources/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- daum 도로명주소 찾기 api --> 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
