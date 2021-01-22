@@ -163,19 +163,35 @@ div.footer{
           
                <c:forEach items="${list}" var = "list">
                <c:if test="${list.status == 'ING'}">
-                  <li class="sangpoomcListLi">
-                  
+                  <li class="sangpoomcListLi">            
                   	 	  	
                   	 	<span>
-                  	 		<form name="form1" method="post" action="/sangpoomc/wishinsert">
+                  	 		<form name="form1" method="post" action="/sangpoomc/wishinsert" onsubmit="setMemWishinfo()">
 	                  	 		<input type="hidden" name="userid" value="${member.userid}"/>
-	      					 	<input type="hidden" name="sno" value="${list.sno}"/>	      					 	         							         				 	
-	         				 	<input  TYPE="IMAGE" src="../resources/images/zzimhagi.png" id="wish_icon" name="Submit" value="Submit"  align="absmiddle">      				 
+	      					 	<input type="hidden" name="sno" value="${list.sno}"/>	      					 	         							         				 	     				 
+	         				 	<img src="../resources/images/zzimhagi.png" id="wish_icon" >      				 
          				 	</form> 
          				 </span>
                   	 	
                   	 	
 <script>
+var formObj_board = $("form[name='form1']");
+
+
+$(document).ready(function(){  
+$("#wish_icon").click(function(){
+	formObj_board.attr("action", "/sangpoomc/wishinsert");
+	formObj_board.attr("method", "post");
+	formObj_board.submit();	
+});//click end
+
+});
+
+
+</script>  
+
+
+<script >
 function setMemWishinfo(){
 	
 	if(${member}==null){
@@ -183,26 +199,7 @@ function setMemWishinfo(){
 	location.href="/member/login";
 	}//if end
 	
-	var formObj_board = $("form[name='form1']");
-	
-		
-		
-		
-	
-	
-	
-	$("#wish_icon_submit").click(function(){	   
-		formObj_board.attr("action", "/sangpoomc/wishinsert");
-		formObj_board.attr("method", "post");
-		formObj_board.submit();
-		
-				
-        
-}); 
-	
-	
-	
-	
+	      
 }//setMemWifhinfo() end
 
 
