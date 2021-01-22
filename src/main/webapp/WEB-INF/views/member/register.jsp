@@ -1,77 +1,173 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ include file="../header.jsp"%>	
+<%@ include file="../header.jsp"%>   
 <!--  본문 시작   template.jsp-->
-<div class="main">  
+<style>
+.registerWrap {
+	max-width: 700px;
+    margin: 0 auto;
+}
+.registerWrap td {
+	padding: 8px 10px 7px;
+    color: #666;
+}
+table {
+	position: relative;
+    margin: 10px 0 0;
+    border-top: 0;
+    color: #fff;
+    line-height: 1.5;
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table th:first-child {
+	border-left: 0;
+}
 
-	
-		<script type="text/javascript">
-		
-		
-		$(document).ready(function(){
+th, td {
+	border: 0;
+    vertical-align: top;
+}
 
-			
-			// 취소
-			$(".cencle").on("click", function(){
-				location.href = "/";
-			})
-			
-			$("#submit").on("click", function(){
-				if($("#userid").val()==""){
-					alert("아이디를 입력해주세요.");
-					$("#userid").focus();
-					return false;
-				}
-				if($("#upw").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#upw").focus();
-					return false;
-				}
-				if($("#uname").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#uname").focus();
-					return false;
-				}
-				// 비번확인
-				if($("#upw").val() !== $("#upwcfm").val()){
-					alert("비밀번호를 확인해주세요");
-					$("#upwcfm").focus();
-					return false;
-				}
-				
-				var idChkVal = $("#idChk").val();
-				if(idChkVal == "N"){
-					alert("중복확인 버튼을 눌러주세요.");
-					return false;
-				}else if(idChkVal == "Y"){
-					alert("회원가입 ㅊㅋ");
-					$("#regForm").submit();
-				}
-				
-				
+tbody th {
+	padding: 12px 0;
+    color: #353535;
+    text-align: left;
+    font-weight: normal;
+}
+#addr1, #addr2 {
+	width: 550px;
+}
+#phone1, #phone2, #phone3 {
+	width: 75px;
+}
 
-				
-			});
-		})
-		
-		
-		
-		function fn_idChk(){	
-			$.ajax({
-				url : "/member/idChk",
-				type : "post",
-				dataType : "json",
-				data : {"userid" : $("#userid").val()},
-				success : function(data){
-					if(data == 1){
-						$("#userid").val()==""; ///////// 왜 안 되지?
-						alert("중복된 아이디입니다.");
-					}else if(data == 0){
-						$("#idChk").attr("value", "Y");
-						alert("사용가능한 아이디입니다.");
-					}
-				}
-			})
-		}
+
+.btnWrap {
+	text-align: center;
+    margin: 50px 0 70px;
+}
+/* 버튼관련 */
+.registerBtn, .cancelBtn, .zipcodeBtn, .idChk{
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
+.registerBtn:hover, .cancelBtn:hover, .zipcodeBtn:hover, .idChk:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+.registerBtn:active, .cancelBtn:active, .zipcodeBtn:active, .idChk:active{
+    box-shadow: inset 1px 1px 1px #DFDFDF;
+}/* 버튼관련끝 */
+
+</style>
+<div class="main">
+<script type="text/javascript">
+      
+      
+      $(document).ready(function(){
+
+         
+         // 취소
+         $(".cancelBtn").on("click", function(){
+            location.href = "/";
+         })
+         
+         $(".registerBtn").on("click", function(){
+            if($("#userid").val()==""){
+               alert("아이디를 입력해주세요.");
+               $("#userid").focus();
+               return false;
+            }
+            if($("#upw").val()==""){
+               alert("비밀번호를 입력해주세요.");
+               $("#upw").focus();
+               return false;
+            }
+            if($("#uname").val()==""){
+               alert("성명을 입력해주세요.");
+               $("#uname").focus();
+               return false;
+            }
+            if($("#phone1").val()=="" || $("#phone2").val()=="" || $("#phone3").val()==""){
+               alert("올바른 폰번호를 입력해주세요.");
+               $("#phone1").focus();
+               return false;
+            }
+            if($("#email").val()==""){
+               alert("이메일을 입력해주세요.");
+               $("#email").focus();
+               return false;
+            }
+            if($("#zipcode").val()=="" || $("#addr1").val()=="" || $("#addr2").val()==""){
+               alert("올바른 주소를 입력해주세요");
+               $("#findAddr").focus();
+               return false;
+            }
+            if($("#birth").val()==""){
+               alert("생년월일을 입력해주세요");
+               $("#birth").focus();
+               return false;
+            }
+            
+            // 비번확인
+            if($("#upw").val() !== $("#upwcfm").val()){
+               alert("비밀번호를 확인해주세요");
+               $("#upwcfm").val('');
+               $("#upwcfm").focus();
+               return false;
+            }
+            
+         	// 폰번호 합치기
+            var phone1 = $("#phone1").val();
+            var phone2 = $("#phone2").val();
+            var phone3 = $("#phone3").val();
+            var phone  = phone1 + phone2 + phone3;
+            $("#phone").val(phone);
+            
+            
+            var idChkVal = $("#idChk").val();
+            if(idChkVal == "N"){
+               alert("중복확인 버튼을 눌러주세요.");
+               $("#idChk").focus();
+               return false;
+            }else if(idChkVal == "Y"){
+               alert("회원가입 ㅊㅋ");
+               $("#regForm").submit();
+            }
+            
+
+
+            
+         });
+      })
+      
+      function fn_idChk(){   
+         $.ajax({
+            url : "/member/idChk",
+            type : "post",
+            dataType : "json",
+            data : {"userid" : $("#userid").val()},
+            success : function(data){
+               if(data == 1){
+                  $("#idChk").attr("value", "N");
+                  alert("중복된 아이디입니다.");
+               }else if(data == 0){
+                  $("#idChk").attr("value", "Y");
+                  alert("사용가능한 아이디입니다.");
+               }
+            }
+         })
+      }
 
 
 
@@ -131,31 +227,22 @@
         }).open();
     }
 </script>
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	  <div class="wrapper">
-	  <div class="joinWrap">
-      <div class="joinWrap2">
-		<section id="container">
-			<form action="/member/register" method="post" id="regForm">
-            <div class="jtypeWrite2">
-			<table border="1">
-			  <tbody>
+
+     <div class="wrapper">
+      <section id="container">
+         <form action="/member/register" method="post" id="regForm">
+            <div class="registerWrap">
+         <table border="1">
+           <tbody>
 <!-- 아이디 -->
                 <tr>
                   <th scope="row">아이디 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
                   <td>
-                      <input id="userid" name="userid" class="inputTypeText" type="text">
-                      <div class="eheck_font" id="id_check"></div>
-                      <span id="jtext">(영문소문자/숫자, 4~16자)</span>
+                  	<div class="eheck_font" id="id_check">
+                      <input id="userid" name="userid" class="inputTypeText" type="text">                      
                       <button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+                    </div>
+                    <span id="jtext">(영문소문자/숫자, 4~16자)</span>
                   </td>
                 </tr>
 <!-- 비밀번호 -->
@@ -163,6 +250,7 @@
                   <th scope="row">비밀번호 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
                   <td>
                     <input id="upw" name="upw" fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호" autocomplete="off" maxlength="16" 0="disabled" type="password">
+                    <span>(영문 대소문자/숫자 4자~16자)</span>
                     <div class="tooltip_typeUpper" style="display: none">
                       <div class="tooltip_typeUpper_content">
                         <strong class="txtWarn">※ 비밀번호 입력 조건</strong>
@@ -170,19 +258,17 @@
                       </div>
                         <a href="#none" class="btnClose" tabindex="-1">
                         <img id="btnClose" src="//img.echosting.cafe24.com/skin/base/common/btn_close_tip.gif" alt="닫기"></a>
-                      <div class="edge"></div>
-	           		</div>
-	           		<br>
-	       			<span>(영문 대소문자/숫자 4자~16자)</span>
-        		  </td>
-        	    </tr>
+                    </div>
+                   
+                </td>
+               </tr>
                 <tr>
-	              <th scope="row">비밀번호 확인 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
-	              <td>
-	                <input id="upwcfm" name="user_passwd_confirm" fw-filter="isFill&amp;isMatch[upw]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
-	                <span id="pwConfirmMsg"></span> 
-	              </td>
-	            </tr>
+                 <th scope="row">비밀번호 확인 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
+                 <td>
+                   <input id="upwcfm" name="user_passwd_confirm" fw-filter="isFill&amp;isMatch[upw]" fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16" 0="disabled" value="" type="password">
+                   <span id="pwConfirmMsg"></span> 
+                 </td>
+               </tr>
 <!-- 이름 -->
                 <tr>
                   <th scope="row">이름 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" alt="필수"></th>
@@ -194,10 +280,10 @@
                 <tr>
                   <th scope="row">휴대전화 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="phone" name="phone" maxlength="11" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" type="text">
-                    <button type="button" id="btnVerify" class="btnNormal " onclick="memberVerifyMobile.joinSendVerificationNumber(); return false;">인증번호받기</button>
-                    <br>
-        			<span>"-"없이 번호만 입력해주세요</span>
+                 <input  id="phone1" maxlength="3" type="text"/>
+                 -<input id="phone2" maxlength="4" type="text"/>
+                 -<input id="phone3" maxlength="4" type="text"/>
+                 <input  id="phone" name="phone" type="hidden"/>
                   </td>
                 </tr>
                 
@@ -205,7 +291,7 @@
                 <tr>
                   <th scope="row">이메일 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="email" name="email" type="text">
+                 <input id="email" name="email" type="text">
                     <br>
                   </td>
                 </tr>
@@ -214,7 +300,7 @@
                 <tr style="display: none">
                   <th scope="row">회원등급<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="grade" name="grade" type="text" value="CUSTOMER">
+                 <input id="grade" name="grade" type="text" value="CUSTOMER">
                     <br>
                   </td>
                 </tr>
@@ -223,8 +309,8 @@
                 <tr>
                   <th scope="row">우편번호 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td><div class="form-group"> 
-		    	    <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="zipcode" id="zipcode" type="text" readonly="readonly" >
-    				<button type="button" class="btn btn-default" onclick="execDaumPostcode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+                 <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="zipcode" id="zipcode" type="text" readonly="readonly" >
+                 <button type="button" class="zipcodeBtn" onclick="execDaumPostcode();" id = "findAddr"><i class="fa fa-search"></i> 우편번호 찾기</button>
                     </div>
                   </td>
                 </tr>
@@ -234,7 +320,7 @@
                 <tr>
                   <th scope="row">주소1 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input class="form-control" id="addr1" name="addr1" type="text" readonly="readonly">
+                 <input class="form-control" id="addr1" name="addr1" type="text" readonly="readonly">
                     <br>
                   </td>
                 </tr>
@@ -243,7 +329,7 @@
                 <tr>
                   <th scope="row">주소2 <img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="addr2" name="addr2" type="text">
+                 <input id="addr2" name="addr2" type="text">
                     <br>
                   </td>
                 </tr>
@@ -251,17 +337,15 @@
                 <tr>
                   <th scope="row">생년월일<img src="//img.echosting.cafe24.com/skin/base/common/ico_required_blue.gif" class="" alt="필수"></th>
                   <td>
-		    	    <input id="birth" name="birth" type="date">
+                 <input id="birth" name="birth" type="date">
                     <br>
                   </td>
                 </tr>
 
                 
-                
-	          </tbody>
-			</table>	
-			</div> <!--jtypeWrite2 end-->
-		  <h3 id="allagree">전체 동의</h3>
+             </tbody>
+         </table>
+        <h3 id="allagree">전체 동의</h3>
                 <div class="ec-base-box gStrong">
                     <p><span class="ec-base-chk"><input type="checkbox" id="all_check" class="check-all"><em class="checkbox"></em></span><label for="all_check"><strong>이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</strong></label></p>
                 </div>
@@ -358,7 +442,7 @@
                         <p>③“몰”과 이용자간에 발생한 전자상거래 분쟁과 관련하여 이용자의 피해구제신청이 있는 경우에는 공정거래위원회 또는 시·도지사가 의뢰하는 분쟁조정기관의 조정에 따를 수 있습니다.</p>
                         <p>제24조(재판권 및 준거법)<br>①“몰”과 이용자간에 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자의 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.</p>
                         <p>②“몰”과 이용자간에 제기된 전자상거래 소송에는 한국법을 적용합니다.</p>부 칙(시행일) 이 약관은 년 월 일부터 시행합니다. </div>
-                    <p class="check"><span>이용약관에 동의하십니까?</span> <input id="check1" class="ab" name="service_check" fw-filter="/1/" fw-label="이용약관 동의" fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label for="check1">동의함</label></p>
+                    <p class="check"><span>이용약관에 동의하십니까?</span> <input id="check1" class="checkR" name="service_check" fw-filter="/1/" fw-label="이용약관 동의" fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label for="check1">동의함</label></p>
                 </div>
                 <div class="ec-base-box agreeArea">
                     <h3>[필수] 개인정보 수집 및 이용 동의</h3>
@@ -382,7 +466,7 @@
                             회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다.
                         </p>
                     </div>
-                    <p class="check"><span>개인정보 수집 및 이용에 동의하십니까?</span> <input id="check1" class="ab" name="privacy_check" fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침" fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label for="privacy_check">동의함</label></p>
+                    <p class="check"><span>개인정보 수집 및 이용에 동의하십니까?</span> <input id="check2" class="checkR" name="checkR" fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침" fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label for="privacy_check">동의함</label></p>
                 </div>
 
                 <div class="ec-base-box agreeArea  ">
@@ -394,26 +478,22 @@
                     </div>
                     <p class="check" id="marketing-check">
                         <li class="">
-                            <span>마케팅 정보 수신에 동의하십니까?</span> <label for="sms_check"><input id="check1" class="bb" name="sms_check" fw-label="is_sms" fw-msg="" class="ec-base-chk" value="T" type="checkbox">동의함</label> </li>
+                            <span>마케팅 정보 수신에 동의하십니까?</span> <label for="sms_check"><input id="check3" class="checkO" name="checkR" fw-label="is_sms" fw-msg="" class="ec-base-chk" value="T" type="checkbox">동의함</label> </li>
                         <!-- <li class="">
                     <span>이메일 수신을 동의하십니까?</span> <label for=is_news_mail0><input id="is_news_mail0" name="is_news_mail" fw-filter="isFill" fw-label="is_news_mail" fw-msg="" class="ec-base-chk" value="T" type="checkbox"  />동의함</label>            </li> -->
                     </p>
                 </div>
-				
-			</form>
-			<div class="btnJoinMain">
-			  <button class="btn btn-success" type="button" id="submit">회원가입</button>
-			  <button class="cencle btn btn-danger" type="button">취소</button>
-			</div>
-		</section>
-		
-			</div> <!--joinWrap2 end-->
-			</div> <!--joinWrap end-->
-			</div> <!--wrapper end-->
+            </div> <!-- registerWrap end-->
+         </form>
+         <div class="btnWrap">
+           <button class="registerBtn" type="button" id="submit">회원가입</button>
+           <button class="cancelBtn" type="button">취소</button>
+         </div> <!-- btnWrap end-->
+      </section>
+    </div> <!-- wrapper end-->
 
-</div>
+</div> <!-- main end-->
 <!--  본문 끝   -->
 <%@ include file="../footer.jsp"%>
-
 
 

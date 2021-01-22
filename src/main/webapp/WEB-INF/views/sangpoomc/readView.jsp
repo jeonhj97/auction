@@ -198,8 +198,28 @@ dd>span {
     color: #666;
 }
 
+h1#sample01{
+	display: inline-block;
+}
+
+pre.scontent{
+
+	font-family: 'Nanum Gothic','나눔고딕',sans-serif,'Dotum','Gulim','Arial',sans-serif;
+    font-size: 18px;
+    line-height: 34px;
+    color: #666;
+    font-weight: 200;
+
+}
+
+
+
 
 </style>
+
+
+
+
 
 <c:if test="${member == null}">
                      <script>
@@ -246,15 +266,14 @@ dd>span {
           </c:if>			
          </dl>
          </div>
-           <form name="form1" method="post" action="/sangpoomc/wishinsert">
-           <input type="hidden" name="userid" value="${member.userid}"/>
-           <input type="hidden" name="sno" value="${read.sno}"/>
-           <input type="submit" value="장바구니에 담기">
-       </form>
+         <div class="closetime">
+	          <h1>종료일:${read.closedate}</h1><h1 style="display: inline-block">남은시간:</h1>
+	          <h1 id="sample01"></h1>
+          </div>
          <button type="button" class="ipchalBtn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}&userid=${member.userid}'">입찰</button>
          <button type="button" class="backBtn" onclick="history.go(-1)">돌아가기</button>
-         <label for="closedate">종료일</label><input type="text"  name="closedate" id="closedate" value="${read.closedate}" readonly/>                                       
-                     <h2 id="sample01"></h2>
+         <label for="closedate"><input type="hidden"  name="closedate" id="closedate" value="${read.closedate}" /> </label>                                      
+                     
       </div>
          <script> 
             const countDownTimer = function (id, date) { 

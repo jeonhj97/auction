@@ -1,6 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file="../header.jsp"%>	
 <!--  본문 시작   template.jsp-->
+    <c:if test="${member.grade != 'MASTER'}">
+     <script>
+         alert("관리자페이지입니다!");
+         location.href='/';
+     </script>
+   	</c:if>   
     <h2>회원 목록</h2>
     <input type="button" value="회원등록" onclick="location.href='${path}/member/register'">
     <table border="1" width="700px">
