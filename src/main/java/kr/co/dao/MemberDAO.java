@@ -38,6 +38,11 @@ public interface MemberDAO {
 	
     // 03. 회원 정보 상세 조회
     public MemberVO memberView(String userid) throws Exception;
+    
+    //비번찾기
+    public MemberVO findPw(MemberVO vo) throws Exception;
+    // 비번생성
+    public void newPassword(MemberVO vo) throws Exception;
 
     
 

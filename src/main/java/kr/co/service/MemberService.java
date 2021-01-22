@@ -33,6 +33,12 @@ public interface MemberService {
 	
 	public MemberVO memberView(String userid) throws Exception;
 	
+	// 비번찾기
+	public MemberVO findPw(MemberVO vo) throws Exception;
+		
+	// 비번생성
+	public void newPassword(MemberVO vo) throws Exception;
+	
   
 
 }

@@ -83,6 +83,19 @@ public class MemberServiceImpl implements MemberService {
     public MemberVO memberView(String userid) throws Exception {
         return dao.memberView(userid);
     }
+    
+    
+    // 비번찾기
+ 	@Override
+ 	public MemberVO findPw(MemberVO vo) throws Exception {
+ 		return dao.findPw(vo);
+ 	}
+ 	
+     //비번생성
+ 	@Override
+ 	public void newPassword(MemberVO vo) throws Exception {
+ 		dao.newPassword(vo);
+ 	}
  
 
 

@@ -83,6 +83,21 @@ public class MemberDAOImpl implements MemberDAO {
     public MemberVO memberView(String userid) throws Exception {
         return sql.selectOne("memberMapper.memberView", userid);
     }
+    
+    
+    // 비번찾기
+ 	@Override
+ 	public MemberVO findPw(MemberVO vo) throws Exception{
+ 		return sql.selectOne("memberMapper.findPw", vo);
+ 	}
+ 	
+     //비번생성
+     @Override
+     public void newPassword(MemberVO vo) {
+     	String password = vo.getUpw();
+     	vo.setUpw(password);
+     	sql.update("memberMapper.newPassword", vo);
+     }
 
 
 }

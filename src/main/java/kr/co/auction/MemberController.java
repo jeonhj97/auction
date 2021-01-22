@@ -217,6 +217,72 @@ public class MemberController {
 	        // member_view.jsp로 포워드
 	        return "member/memberView";
 	    }
+	    
+	    // 비번찾기
+	    
+		@RequestMapping(value = "/findPw")
+		public String findPw() throws Exception{
+			return "/member/findPw";
+		}
+
+	    @RequestMapping(value= "/findPw", method = RequestMethod.POST)
+	    public String findPw(HttpSession session, Model model, MemberVO vo, RedirectAttributes rttr) throws Exception{
+	    	MemberVO findPw = service.findPw(vo);
+	    	
+			if(findPw == null) { // 기본값, 잘못된 입력
+				rttr.addFlashAttribute("msg", false);
+			}else { // 옳은 입력값
+				rttr.addFlashAttribute("dto", findPw);
+				Random r = new Random();
+				int num = r.nextInt(89999) + 10000;
+				String npassword = "bapsi" + Integer.toString(num);// 새로운 비밀번호 변경
+				vo.setUpw(npassword);
+				session.setAttribute("vo", vo);
+				service.newPassword(vo);
+			}
+			
+	        // 회원 정보를 model에 저장
+	       
+	        //System.out.println("클릭한 아이디 확인 : "+userId);
+	        // member_view.jsp로 포워드
+	        return "redirect:/member/findPw";
+	    }
+	    
+	    // 새로운 비번만들기
+
+
+	// 새로운 비밀번호가 생성된다. (위에것과 합침)
+	/*
+	 * @RequestMapping("/newPw") public String newPassword(@Valid MemberVO vo,
+	 * HttpSession session) throws Exception { Random r = new Random(); int num =
+	 * r.nextInt(89999) + 10000; String npassword = "bapsi" +
+	 * Integer.toString(num);// 새로운 비밀번호 변경 vo.setUpw(npassword);
+	 * session.setAttribute("vo", vo); service.newPassword(vo);
+	 * 
+	 * return "member/sendMail";
+	 * 
+	 * }
+	 */
+
+
+
+		// 이메일로 비밀번호가 전송이된다.
+		@RequestMapping("/sendMail")
+		public String findPasswordOK(MemberVO vo, HttpSession session) throws Exception {
+
+			vo = (MemberVO) session.getAttribute("vo");
+
+				email.setContent("새로운 비밀번호 " + vo.getUpw() + " 입니다.");
+				email.setReceiver(vo.getEmail());
+				email.setSubject("안녕하세요"+vo.getUserid() +"님  재설정된 비밀번호를 확인해주세요");
+				emailSender.SendEmail(email);
+				System.out.println(email);
+				session.invalidate();
+				return "/member/login";
+		}
+
+
+
 
 
 }
