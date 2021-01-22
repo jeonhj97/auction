@@ -160,8 +160,9 @@ article + article {
          <div class="sangpoomcList">
           
                <c:forEach items="${list}" var = "list">
-               
+               <c:if test="${list.status == 'ING'}">
                   <li class="sangpoomcListLi">
+                  
                   	 	  	
                   	 	<span>
                   	 		<form name="form1" method="post" action="/sangpoomc/wishinsert">
@@ -254,14 +255,17 @@ function setMemWishinfo(){
                            </dl>
                         </section>
                         <section class="bidding">
-                           <dl>
+                          <%--  <dl>
                               <dt class="openDate">등록일x 마감o</dt>
                               <dd><fmt:formatDate value="${list.opendate}" pattern="yyyy-MM-dd"/></dd>
-                           </dl>
-                           <button type="button" class="ipchalBtn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}&userid=${member.userid}'">입찰</button>
+                           </dl>                          
+                          <button type="button" class="ipchalBtn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}&userid=${member.userid}'">입찰</button> --%>
+                           <dt >경매상태</dt>
+                           <dd><c:out value="${list.status}" /></dd>
                         </section>
                      
                   </li>
+                  </c:if>
                </c:forEach>
             </form>
          </div>

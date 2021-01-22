@@ -83,7 +83,7 @@ const countDownTimer = function (id, date) {
 					
 					
 					
-				}else					
+				}else{					
 					// 낙찰 
 					alert("해당 경매가 종료 되었습니다!");
 					formObj.attr("action", "/sangpoomc/nakchal");
@@ -94,7 +94,7 @@ const countDownTimer = function (id, date) {
 					
 					
 					
-				//}//if end
+				}//if end
 
 					
 				})
