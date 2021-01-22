@@ -136,7 +136,9 @@ article + article {
     	top: 489px;
 }
 
-
+div.footer{
+	float: left;
+}
 
 
 
@@ -247,12 +249,18 @@ function setMemWishinfo(){
                               </dd>
                            </dl>
                            <dl class="nowPrice">
-                           <dt>현재가</dt>
-                              <dd>
-                                 <span class="KRW">KRW</span>
-                                 <c:out value="${list.nowprice}" />
-                              </dd>
-                           </dl>
+                            <c:if test="${count == 0}">	
+					            <dt>현재가</dt>
+					            <dd>
+					               <span>KRW ${list.startprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>
+					            </dd>
+					          </c:if>
+					          <c:if test="${count>= 1}">
+					         	 <dt>현재가</dt>
+					         	 <dd>
+					          		<span>KRW ${list.nowprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>     
+					          	</dd>   
+					          </c:if>
                         </section>
                         <section class="bidding">
                           <%--  <dl>

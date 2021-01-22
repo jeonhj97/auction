@@ -43,9 +43,10 @@ public class SangpoomcController {
 
 	//리스트
 	@RequestMapping(value="list",method= RequestMethod.GET )
-	public String list(SangpoomcVO sangpoomcvo,Model model)throws Exception{
+	public String list(SangpoomcVO sangpoomcvo,Model model,IpchalVO ipchalvo)throws Exception{
 		
 		model.addAttribute("list",service.list());//이것도 받아오는거잖아
+		model.addAttribute("count",service.count(ipchalvo));
 		
 		return "sangpoomc/list";
 	}

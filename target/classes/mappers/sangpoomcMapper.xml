@@ -18,7 +18,7 @@
 	  SELECT sno,sname,img,startprice,scontent
 	        ,(select max(ipprice) from ipchal where sno=#{sno}) as nowprice
 	        , to_date(opendate,'yyyy/mm/dd')
-	        ,(select to_char(opendate,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
+	        ,(select to_char(opendate+1,'yyyy/mm/dd HH24:MM:SS AM') from sangpoom where sno=#{sno}) as closedate
 	        ,sartist
 	        ,syear
 	        ,stype
@@ -70,7 +70,7 @@
         ,#{sno} 
         ,#{userid}
         ,(select max(ipprice) from ipchal where sno=#{sno})
-        ,(select to_char(opendate,'yyyy/mm/dd')  from sangpoom where sno=#{sno})
+        ,(select to_char(opendate+1,'yyyy/mm/dd')  from sangpoom where sno=#{sno})
         ,(select img as nakimg from sangpoom where sno=#{sno})
         ,(select sname from sangpoom where sno=#{sno})
         ) 
