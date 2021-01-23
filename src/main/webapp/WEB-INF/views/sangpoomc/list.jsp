@@ -140,25 +140,33 @@ div.footer{
 </style>
 
 
-<script>
+<script type="text/javascript">
 	function wish_icon(member){
 		if(member.length==0){
 			alert("로그인이 필요합니다");
 			location.href="/member/login";
-		}else{			
-			
-				alert("상품찜하기가 되었습니다");
-				var formObj_board = $("form[name='form1']");
-				formObj_board.attr("action", "/sangpoomc/wishinsert");
-				formObj_board.attr("method", "post");
-				formObj_board.submit();	
+		}else if(member.length!=0){			
+				if(count==0){
+					alert("상품찜하기가 되었습니다");
+					var formObj_board = $("form[name='form1']");
+					formObj_board.attr("action", "/sangpoomc/wishinsert");
+					formObj_board.attr("method", "post");
+					formObj_board.submit();	
+				}else if(count==1){
+					alert("상품찜하기가 취소 되었습니다");
+					var formObj_board = $("form[name='form1']");
+					formObj_board.attr("action", "/sangpoomc/wishinsert");
+					formObj_board.attr("method", "post");
+					formObj_board.submit();	
+				}//if end
 			
 		}//if end
+		
+		
+		
 	}//wish_icon() end
 	
-	
-	
-	
+
 	
 	
 	
@@ -175,7 +183,8 @@ div.footer{
           
             <c:forEach items="${list}" var = "list">
                <c:if test="${list.status == 'ING'}">
-                  <li class="sangpoomcListLi">     
+                  <li class="sangpoomcListLi"> 
+                    
                  	 <span>
                   	 		<form name="form1">
 	                  	 		<input type="hidden" name="userid" value="${member.userid}"/>
@@ -189,7 +198,7 @@ div.footer{
                      </a>
                         <section class="information">                       
                            <article class="articleMain">
-                              <P class="sno"><c:out value="${list.sno}" /></p>
+                              <P class="sno"><c:out value="${list.sno}" /></p>                              
                               <p class="sname"><c:out value="${list.sname}" /></p>
                               <p class="sartist"><c:out value="${list.sartist}" /></p>
                            </article>
@@ -210,22 +219,28 @@ div.footer{
                            <dt>시작가</dt>
                               <dd>
                                  <span class="KRW">KRW</span>
-                                 <c:out value="${list.startprice}" />
+                                 <c:out value="${list.startprice}"/> 
+                                 
+                                 
+                                                                                             
                               </dd>
                            </dl>
                            <dl class="nowPrice">
-                            <c:if test="${count == 0}">	
+                            <c:if test="${count == 0}">
+                          	
 					            <dt>현재가</dt>
 					            <dd>
 					               <span>KRW ${list.startprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>
 					            </dd>
 					          </c:if>
 					          <c:if test="${count>= 1}">
+					          
 					         	 <dt>현재가</dt>
 					         	 <dd>
 					          		<span>KRW ${list.nowprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>     
 					          	</dd>   
 					          </c:if>
+					         </dl>
                         </section>
                         <section class="bidding">
                           <%--  <dl>
@@ -233,7 +248,7 @@ div.footer{
                               <dd><fmt:formatDate value="${list.opendate}" pattern="yyyy-MM-dd"/></dd>
                            </dl>                          
                           <button type="button" class="ipchalBtn" onclick="location.href='/sangpoomc/ipchalView?sno=${read.sno}&userid=${member.userid}'">입찰</button> --%>
-                           <dt >경매상태</dt>
+                           <dt>경매상태</dt>
                            <dd><c:out value="${list.status}" /></dd>
                         </section>
                   </li>

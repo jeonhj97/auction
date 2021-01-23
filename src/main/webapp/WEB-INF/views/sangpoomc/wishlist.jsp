@@ -18,15 +18,9 @@
 								<td><c:out value="${wishlist.cno}" /></td>
 								<td><c:out value="${member.userid}" /></td>							
 								<td><c:out value="${wishlist.sno}" /></td>
-								<td><img  src="${wishlist.wishimg}"/></td>
+								<td><a href="/sangpoomc/readView?sno=${wishlist.sno}"><img  src="${wishlist.wishimg}"/></a></td>
 								<td><c:out value="${wishlist.sname}" /></td>
-						<td>
-                      	<form name="form2" method="post" action="/sangpoomc/wishinsert">
-       					 <input type="hidden" name="sno" value="${wishlist.sno}"/>
-          				 <input type="hidden" name="userid" value="${member.userid}"/>
-          				 <input type="submit" value="삭제">
-          				 </form>
-          				 </td>
+						
 							</tr>
 						</c:forEach>	
 						

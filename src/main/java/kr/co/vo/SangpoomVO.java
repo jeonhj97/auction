@@ -12,7 +12,7 @@ public class SangpoomVO {
 	private Date opendate;
 	private String scontent;
 	private String status;
-	private int startprice;
+	private String startprice;
 	private String thumbimg;
 	private String img;
 	private String sartist;
@@ -75,8 +75,7 @@ public class SangpoomVO {
 	}
 	public void setImg(String img) {
 		this.img = img;
-	}
-	
+	}	
 	public int getSno() {
 		return sno;
 	}
@@ -94,9 +93,7 @@ public class SangpoomVO {
 	}
 	public void setOpendate(Date opendate) {
 		this.opendate = opendate;
-	}
-	
-	
+	}	
 	public String getScontent() {
 		return scontent;
 	}
@@ -109,10 +106,11 @@ public class SangpoomVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getStartprice() {
+	
+	public String getStartprice() {
 		return startprice;
 	}
-	public void setStartprice(int startprice) {
+	public void setStartprice(String startprice) {
 		this.startprice = startprice;
 	}
 	@Override

@@ -2,6 +2,7 @@ package kr.co.auction;
 
 
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.service.MemberService;
+import kr.co.util.Email;
+import kr.co.util.EmailSender;
 import kr.co.vo.MemberVO;
 
 @Controller
@@ -31,6 +34,13 @@ public class MemberController {
 	
 	@Inject
 	MemberService service;
+	
+	 @Autowired
+	   private EmailSender emailSender;
+	    
+   @Autowired
+   private Email email;
+	
 	
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

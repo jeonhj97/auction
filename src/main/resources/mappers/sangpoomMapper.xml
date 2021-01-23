@@ -23,7 +23,7 @@
 				, #{sname}
 				, #{img}
 				, #{scontent}
-				,#{startprice}
+				, #{startprice}
 				,#{thumbimg}
 				, sysdate
 				,#{sartist}

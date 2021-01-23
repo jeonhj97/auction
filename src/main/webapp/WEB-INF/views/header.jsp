@@ -34,17 +34,12 @@
                 </a>
             </div>
             <ul id="navbarmenu" class="navbar__menu">
-                <li><a href="/sangpoomc/list">SHOP</a></li>
+              <c:if test="${member == null}">
                 <li><a href="/member/login">LOGIN</a></li>
-                <li><a href="/member/register">JOIN</a></li>
-                <li><a href="/board/list">NOTICE</a></li>
-                <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
-                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>
-                <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
-                <li><a href="/sangpoomc/wishlist">찜하기</a></li>
+              </c:if>                                      
                 <li>
 					<c:if test="${member != null}">
-						<p>${member.userid}</p>
+						<p><a href="/member/login">${member.userid}</a></p>
 					</c:if>
 				</li>
             </ul>
@@ -52,16 +47,13 @@
         <!-- 바텀네비게이션바 -->
         <nav class="bottom">
             <ul class="bottom__menu">
-              <li><a href="/sangpoomc/list">SHOP</a></li>
-                <li><a href="/member/login">LOGIN</a></li><li><a href="/member/register">JOIN</a></li>
-                <li><a href="/board/list">NOTICE</a></li>
-                <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
-                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>
-                <li><a href="/sangpoom/writeView">SALEPAGE</a></li>
-                <li><a href="/sangpoomc/wishlist">찜하기</a></li>
+              <c:if test="${member == null}">
+                <li><a href="/member/login">LOGIN</a></li>
+               </c:if> 
                  <li>
 					<c:if test="${member != null}">
-						<p>${member.userid}</p>
+						<p style="margin-top: 0px;
+    							  margin-bottom: 0px;"><a href="/member/login">${member.userid}</a></p>
 					</c:if>
 				</li>
             </ul>
@@ -69,11 +61,12 @@
         <!-- 사이드바 -->
         <div class="sidebar">
             <ul class="sidebar__menu">
-                <li><a href="">전체보기</a></li>
-                <li><a href="">동양화</a></li>
-                <li><a href="">서양화</a></li>
-                <li><a href="">뭐로</a></li>
-                <li><a href="">할까</a></li>
+                <li><a href="/sangpoomc/list">SHOP</a></li>
+                <li><a href="/board/list">NOTICE</a></li>
+                <li><a href="/sangpoom/writeView">SALEPAGE</a></li> 
+                <li><a href="/sangpoomc/wishlist">WISHLIST</a></li>
+                <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
+                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>              
             </ul>
         </div>
         <div class="sidebar__overlay">

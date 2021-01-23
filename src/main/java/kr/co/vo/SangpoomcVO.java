@@ -13,7 +13,7 @@ public class SangpoomcVO {
 	private String closedate;
 	private String scontent;
 	private String status;
-	private int startprice;
+	private String startprice;
 	private String thumbimg;
 	private String img;
 	private String sartist;
@@ -21,7 +21,7 @@ public class SangpoomcVO {
 	private String stype;
 	private String ssize;
 	
-	private int nowprice;
+	private String nowprice;
 	
 	
 	
@@ -66,10 +66,11 @@ public class SangpoomcVO {
 	public void setSsize(String ssize) {
 		this.ssize = ssize;
 	}
-	public int getNowprice() {
+	
+	public String getNowprice() {
 		return nowprice;
 	}
-	public void setNowprice(int nowprice) {
+	public void setNowprice(String nowprice) {
 		this.nowprice = nowprice;
 	}
 	public String getThumbimg() {
@@ -122,10 +123,11 @@ public class SangpoomcVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getStartprice() {
+	
+	public String getStartprice() {
 		return startprice;
 	}
-	public void setStartprice(int startprice) {
+	public void setStartprice(String startprice) {
 		this.startprice = startprice;
 	}
 	@Override

@@ -109,6 +109,24 @@
         FROM MEMBER
         WHERE userid = #{userid}
     </select>
+    
+    <!-- 비번찾기 -->
+   <select id="findPw" resultType="kr.co.vo.MemberVO">
+      SELECT upw, email, userid, uname
+      FROM member 
+        WHERE email = #{email} and userid = #{userid}
+   </select>
+
+   <!-- 비번생성 -->
+   <update id="newPassword">
+      UPDATE member
+      SET upw = #{upw}
+      WHERE email = #{email} and userid=#{userid}
+   </update>
+   
+   
+   
+    
 
     
 </mapper>

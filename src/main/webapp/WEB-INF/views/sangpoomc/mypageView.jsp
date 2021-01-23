@@ -18,8 +18,12 @@
 						
 						<c:forEach items="${ipchallist}" var = "ipchallist">
 							<tr>
-								<td><c:out value="${ipchallist.sname}" /></td>
-								<td><img id="sangpoomcListImg" src="${ipchallist.selectimg}"/></td>
+								<td><c:out value="${ipchallist.sname}" /></td>								
+								
+									<td><a href="/sangpoomc/readView?sno=${ipchallist.sno}"><img id="sangpoomcListImg" src="${ipchallist.selectimg}"/></a></td>
+								
+                        			
+                    			
 								<td><c:out value="${ipchallist.ipno}" /></td>
 								<td><c:out value="${member.userid}" /></td>							
 								<td><c:out value="${ipchallist.sno}" /></td>

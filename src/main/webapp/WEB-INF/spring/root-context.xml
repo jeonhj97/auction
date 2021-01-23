@@ -34,6 +34,32 @@
     <context:component-scan base-package="kr.co.dao"></context:component-scan>
     <context:component-scan base-package="kr.co.vo"></context:component-scan>
 	<context:component-scan base-package="kr.co.util"></context:component-scan>	
+	
+	
+	<!-- 메일 보내기  -->
+      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+         <property name="host" value="smtp.gmail.com" />  <!-- 네이버일경우 호스트 smtp.naver.com으로 수정, 포트번호 465 -->
+         <property name="port" value="587" />            
+         <property name="defaultEncoding" value="utf-8"/>
+         <property name="username" value="skjhj98" /> <!-- 네 지금은 지메일만 근데 포트랑 저 호스트 수정하면 네이버도돼요 받는 사람은 둘 다 상관없음 -->
+         <property name="password" value="daedongapt12@" />
+
+         <!-- email 요청시는 SMTP -->
+         <property name="javaMailProperties">
+            <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+            </props>
+         </property>
+      </bean>
+
+   <bean id="email" class="kr.co.util.Email">
+   </bean>
+   <bean id="emailSender" class="kr.co.util.EmailSender">
+   </bean>
+	
 		
 		
 </beans>

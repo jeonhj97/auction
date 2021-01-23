@@ -241,7 +241,7 @@ pre.scontent{
       </div>
       
       <div class="sangpoomcReadViewInfo">
-         <pre class="sno">${read.sno}<input type="hidden" id="sno" name="sno" value="${read.sno}" readonly/></pre>
+         <pre class="sno">${read.sno}<input type="hidden" id="sno" name="sno" value="${read.sno}" readonly/></pre>         
          <pre class="subject">${read.sname}<input type="hidden" id="sname" name="sname" value="${read.sname}" readonly/></pre>
          <pre class="scontent">${read.scontent}<input type="hidden" id="scontent" name="scontent" value="${read.scontent}" readonly/></pre>
          <div class="sangpoomcReadViewPrice">

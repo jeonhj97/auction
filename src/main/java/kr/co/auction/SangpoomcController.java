@@ -50,7 +50,7 @@ public class SangpoomcController {
 		
 		
 		
-		//System.out.println(service.count(ipchalvo));
+		System.out.println(service.count(ipchalvo));
 		
 		return "sangpoomc/list";
 	}
@@ -63,7 +63,9 @@ public class SangpoomcController {
 		model.addAttribute("read",service.read(sangpoomcvo.getSno()));//이것도 받아오는거잖아
 		model.addAttribute("count",service.count(ipchalvo));
 		
-		System.out.println("----" + service.read(sangpoomcvo.getSno()));
+		//System.out.println("----" + service.read(sangpoomcvo.getSno()));
+		
+		System.out.println(service.count(ipchalvo));
 		
 		return "sangpoomc/readView";
 	}
@@ -104,6 +106,7 @@ public class SangpoomcController {
 	public String ipchallist(Model model, IpchalVO ipchalvo, Criteria cri,SangpoomcVO sangpoocvo)throws Exception{
 		
 		model.addAttribute("ipchallist",service.ipchallist(cri));
+		
 		
 		
 		PageMaker pageMaker = new PageMaker();
