@@ -118,7 +118,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "/member/login";
+		return "redirect:/";
 	}
 	
 	// 아이디 중복 체크

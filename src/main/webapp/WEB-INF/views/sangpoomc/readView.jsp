@@ -2,7 +2,6 @@
 <%@ include file="../header.jsp"%>   
 <!--  본문 시작   template.jsp-->
 <style>
-
 #sartist1{
    background: #ef5350;
    color: #fff;
@@ -39,7 +38,6 @@
    width: 100%;
    transition: 800ms ease all;
 }
-
 #syear1{
    background: #888;
    color: #f2f2f2;
@@ -52,8 +50,6 @@
    transition: 800ms ease all;
    outline: none;
 }
-
-
 .divWrap {
    display:flex;
 }
@@ -66,7 +62,6 @@ th,td {
      height: 500px;
      margin-left:280px;
 }
-
 /*입찰버튼*/
 .ipchalBtn{
    background: #ef5350;
@@ -104,7 +99,6 @@ th,td {
    width: 100%;
    transition: 800ms ease all;
 }
-
 /*돌아가기버튼*/
 .backBtn{
    background: #888;
@@ -142,8 +136,6 @@ th,td {
    width: 100%;
    transition: 800ms ease all;
 }
-
-
 .sangpoomcReadViewInfo {
    margin-left :50px;
 }
@@ -162,13 +154,11 @@ th,td {
     font-weight: 800;
     padding-top: 18px;
 }
-
 .sangpoomcReadViewPrice {
    padding-bottom: 20px;
     margin-bottom: 10px;
     border-bottom: 1px solid #e1e1e1;
 }
-
 dt {
    float: left;
     height: 24px;
@@ -182,7 +172,6 @@ dt {
     text-align: center;
     margin-right: 20px;
 }
-
 dd {
    overflow: hidden;
     min-height: 26px;
@@ -190,31 +179,22 @@ dd {
     font-size: 18px;
     color: #666;
 }
-
 dd>span {
    display: inline-block;
     min-width: 38px;
     font-size: 16px;
     color: #666;
 }
-
 h1#sample01{
 	display: inline-block;
 }
-
 pre.scontent{
-
 	font-family: 'Nanum Gothic','나눔고딕',sans-serif,'Dotum','Gulim','Arial',sans-serif;
     font-size: 18px;
     line-height: 34px;
     color: #666;
     font-weight: 200;
-
 }
-
-
-
-
 </style>
 
 
@@ -299,7 +279,6 @@ pre.scontent{
                            formObj.attr("action", "/sangpoomc/statusupdate");
                            formObj.attr("method", "post");
                            formObj.submit();
-
                            
                         }else{             
                            // 낙찰 

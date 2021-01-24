@@ -217,8 +217,12 @@ fieldset {
 						</c:if>
 						
 						<c:if test="${member != null }">
-						<script>							
+						<script>	
+								window.history.go(0);
+								location.reload(true);
+								location.href = location.href;
 								window.history.back();
+								
 						</script>
 						<%-- <div class="loginOkWrap">
 							<p class="loginOk">${member.userid}님 환영합니다</p>
