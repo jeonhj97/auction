@@ -102,7 +102,7 @@ public class SangpoomcController {
 	
 	
 	//입찰내역
-	@RequestMapping(value="mypageView",method= RequestMethod.GET )
+	@RequestMapping(value="ipchalPageView",method= RequestMethod.GET )
 	public String ipchallist(Model model, IpchalVO ipchalvo, Criteria cri,SangpoomcVO sangpoocvo)throws Exception{
 		
 		model.addAttribute("ipchallist",service.ipchallist(cri));
@@ -114,11 +114,8 @@ public class SangpoomcController {
 		pageMaker.setTotalCount(service.listcount());
 		
 		model.addAttribute("pageMaker", pageMaker);
-		
-		
-		
 
-		return "sangpoomc/mypageView";
+		return "sangpoomc/ipchalPageView";
 	}
 	
 	

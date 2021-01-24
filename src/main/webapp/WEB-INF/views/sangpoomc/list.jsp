@@ -146,20 +146,21 @@ div.footer{
 			alert("로그인이 필요합니다");
 			location.href="/member/login";
 		}else if(member.length!=0){			
-				if(count==0){
-					alert("상품찜하기가 되었습니다");
-					var formObj_board = $("form[name='form1']");
-					formObj_board.attr("action", "/sangpoomc/wishinsert");
-					formObj_board.attr("method", "post");
-					formObj_board.submit();	
-				}else if(count==1){
-					alert("상품찜하기가 취소 되었습니다");
-					var formObj_board = $("form[name='form1']");
-					formObj_board.attr("action", "/sangpoomc/wishinsert");
-					formObj_board.attr("method", "post");
-					formObj_board.submit();	
-				}//if end
-			
+					if(count==0){
+						alert("상품찜하기가 되었습니다");
+						var formObj_board = $("form[name='form1']");
+						formObj_board.attr("action", "/sangpoomc/wishinsert");
+						formObj_board.attr("method", "post");
+						formObj_board.submit();	
+					}
+					if(count==1){
+						alert("상품찜하기가 취소 되었습니다");
+						var formObj_board = $("form[name='form1']");
+						formObj_board.attr("action", "/sangpoomc/wishinsert");
+						formObj_board.attr("method", "post");
+						formObj_board.submit();	
+					}
+				
 		}//if end
 		
 		

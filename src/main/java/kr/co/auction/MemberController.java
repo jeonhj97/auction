@@ -94,6 +94,24 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	
+	
+		
+	@RequestMapping(value = "/mypageView", method = RequestMethod.GET)
+	public String mypageView() throws Exception{
+		return "/member/mypageView";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{

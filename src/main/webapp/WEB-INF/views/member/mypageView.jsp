@@ -217,17 +217,15 @@ fieldset {
 						</c:if>
 						
 						<c:if test="${member != null }">
-						<script>							
-								window.history.back();
-						</script>
-						<%-- <div class="loginOkWrap">
+						
+						 <div class="loginOkWrap">
 							<p class="loginOk">${member.userid}님 환영합니다</p>
 							<div class="loginUtil">
 								<a id="memberUpdateBtn" class="btnLogin" type="button">회원정보수정</a>
 								<a id="logoutBtn" class="btnLogin" type="button" class="logoutBtn">로그아웃</a>
 								<a id="memberDeleteBtn" class="btnLogin" type="button">회원탈퇴</a>
 							</div>
-						</div> --%>
+						</div> 
 						</c:if>
 						<c:if test="${msg == false}">
 							<alert style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</alert>
@@ -240,5 +238,3 @@ fieldset {
 </div>
 <!--  본문 끝   -->
 <%@ include file="../footer.jsp"%>
-
-

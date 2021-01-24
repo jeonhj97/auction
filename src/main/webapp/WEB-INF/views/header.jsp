@@ -40,6 +40,7 @@
                 <li>
 					<c:if test="${member != null}">
 						<p><a href="/member/login">${member.userid}</a></p>
+						<p><a href="/member/logout">logout</a></p>						
 					</c:if>
 				</li>
             </ul>
@@ -54,6 +55,7 @@
 					<c:if test="${member != null}">
 						<p style="margin-top: 0px;
     							  margin-bottom: 0px;"><a href="/member/login">${member.userid}</a></p>
+    							  <p><a href="/member/logout">logout</a></p>	
 					</c:if>
 				</li>
             </ul>
@@ -61,12 +63,14 @@
         <!-- 사이드바 -->
         <div class="sidebar">
             <ul class="sidebar__menu">
-                <li><a href="/sangpoomc/list">SHOP</a></li>
+                <li><a href="/sangpoomc/list?count=${count}">SHOP</a></li>
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li> 
                 <li><a href="/sangpoomc/wishlist">WISHLIST</a></li>
-                <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
-                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>              
+                <li><a href="/sangpoomc/ipchalPageView">입찰페이지</a></li>
+                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>
+                <li><a href="/member/mypageView">MYPAGE</a></li>  
+                            
             </ul>
         </div>
         <div class="sidebar__overlay">
