@@ -66,8 +66,9 @@
                 <li><a href="/board/list">NOTICE</a></li>
                 <li><a href="/sangpoom/writeView">SALEPAGE</a></li> 
                 <li><a href="/sangpoomc/wishlist">WISHLIST</a></li>
-                <li><a href="/sangpoomc/mypageView">MYPAGE</a></li>
-                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li>              
+                <li><a href="/member/mypageView">MYPAGE</a></li>
+                <li><a href="/sangpoomc/nakchalView">낙찰페이지</a></li> 
+                <li><a href="/sangpoomc/ipchalPageView">입찰페이지</a></li>             
             </ul>
         </div>
         <div class="sidebar__overlay">

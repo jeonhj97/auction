@@ -136,6 +136,12 @@ public class SangpoomcServiceImpl implements SangpoomcService{
     public int wishcount(WishVO vo) throws Exception {
         return dao.wishcount(vo);
     }
+    //그냥 카운트
+	@Override
+	public int countno(IpchalVO ipchalvo) throws Exception {
+		
+		return dao.countno(ipchalvo);
+	}
 	
 	
 	

@@ -99,7 +99,7 @@ fieldset {
 				</div>
 				<div class="btnWrap">
 					<button class="findPwBtn" type="submit">찾기</button>
-					<button class="cancelBtn" type="reset">취소</button>
+					<button class="cancelBtn" type="reset" onclick="history.go(-1)">취소</button>
 				</div>
 			</c:if>
 			<c:if test="${dto != null }">

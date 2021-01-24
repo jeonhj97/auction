@@ -146,20 +146,14 @@ div.footer{
 			alert("로그인이 필요합니다");
 			location.href="/member/login";
 		}else if(member.length!=0){			
-					if(count==0){
+						
 						alert("상품찜하기가 되었습니다");
+						document.getElementById("wish_icon1").src = "../resources/images/zzimhagi2.png";
 						var formObj_board = $("form[name='form1']");
 						formObj_board.attr("action", "/sangpoomc/wishinsert");
 						formObj_board.attr("method", "post");
 						formObj_board.submit();	
-					}
-					if(count==1){
-						alert("상품찜하기가 취소 되었습니다");
-						var formObj_board = $("form[name='form1']");
-						formObj_board.attr("action", "/sangpoomc/wishinsert");
-						formObj_board.attr("method", "post");
-						formObj_board.submit();	
-					}
+										
 				
 		}//if end
 		
@@ -167,9 +161,23 @@ div.footer{
 		
 	}//wish_icon() end
 	
+	
+	
+	
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 
 	
+	var i=1;
+	while(i<${countno}){
 	
+	
+	
+	i++;
+	
+	};
 	
 
 </script>  
@@ -190,7 +198,7 @@ div.footer{
                   	 		<form name="form1">
 	                  	 		<input type="hidden" name="userid" value="${member.userid}"/>
 	      					 	<input type="hidden" name="sno" value="${list.sno}"/>	      					 	         							         				 	     				 
-	         				 	<img src="../resources/images/zzimhagi1.png"  onclick="wish_icon('${member}')" style="cursor:pointer" > 
+	         				 	<img src="../resources/images/zzimhagi1.png"  onclick="wish_icon('${member}')" style="cursor:pointer" id="wish_icon1" name="wish_icon1"> 
 	         				   				 
          				 	</form> 
          			 </span>
@@ -220,27 +228,26 @@ div.footer{
                            <dt>시작가</dt>
                               <dd>
                                  <span class="KRW">KRW</span>
-                                 <c:out value="${list.startprice}"/> 
+                               			${list.startprice}
                                  
                                  
                                                                                              
                               </dd>
                            </dl>
                            <dl class="nowPrice">
-                            <c:if test="${count == 0}">
-                          	
+                            <c:if test="${count==0}">                          	
 					            <dt>현재가</dt>
 					            <dd>
-					               <span>KRW ${list.startprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>
+					               <span>KRW ${list.startprice}<input type="hidden" id="startprice" name="startprice" value="${list.startprice}" readonly/></span>
 					            </dd>
 					          </c:if>
-					          <c:if test="${count>= 1}">
+					        <c:if test="${count>= 1}">
 					          
 					         	 <dt>현재가</dt>
 					         	 <dd>
 					          		<span>KRW ${list.nowprice}<input type="hidden" id="nowprice" name="nowprice" value="${list.nowprice}" readonly/></span>     
 					          	</dd>   
-					          </c:if>
+					        </c:if>
 					         </dl>
                         </section>
                         <section class="bidding">

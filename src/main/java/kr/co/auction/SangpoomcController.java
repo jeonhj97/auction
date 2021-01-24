@@ -47,10 +47,10 @@ public class SangpoomcController {
 		
 		model.addAttribute("list",service.list());//이것도 받아오는거잖아
 		model.addAttribute("count",service.count(ipchalvo));
+		model.addAttribute("countno",service.countno(ipchalvo));
 		
 		
-		
-		System.out.println(service.count(ipchalvo));
+		System.out.println(service.list());
 		
 		return "sangpoomc/list";
 	}

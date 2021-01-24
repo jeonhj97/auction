@@ -138,6 +138,13 @@ public class SangpoomcDAOImpl implements SangpoomcDAO{
         return sqlSession.selectOne("sangpoomcMapper.wishcount", vo);
     }
 
+    //그냥 카운트
+    @Override
+	public int countno(IpchalVO ipchalvo) throws Exception {
+		
+		return sqlSession.selectOne("sangpoomcMapper.count_no",ipchalvo);
+	}
+
 
 	
 	

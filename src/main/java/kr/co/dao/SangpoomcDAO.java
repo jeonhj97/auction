@@ -35,6 +35,9 @@ public interface SangpoomcDAO {
 	//입찰카운트
 	public int count(IpchalVO ipchalvo)throws Exception;
 	
+	//그냥카운트
+	public int countno(IpchalVO ipchalvo)throws Exception;
+	
 	
 	
 	
@@ -62,12 +65,14 @@ public interface SangpoomcDAO {
 	
 	// 1. 장바구니 추가
     public void wishinsert(WishVO vo) throws Exception;
- // 2. 장바구니 목록
+    // 2. 장바구니 목록
     public List<WishVO> wishlist() throws Exception;
     // 3. 장바구니 삭제
     public void wishdelete(WishVO vo) throws Exception;
     // 장바구니 중복확인
     public int wishcount(WishVO vo) throws Exception;
+    
+    
 
 	
 	

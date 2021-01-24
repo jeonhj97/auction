@@ -66,6 +66,7 @@ fieldset {
     box-shadow: inset 1px 1px 1px #DFDFDF;
 }/* 버튼관련끝 */
 </style>
+
 <div class="main">  
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -95,7 +96,7 @@ fieldset {
 				</div>
 				<div class="btnWrap">
 					<button class="findIdBtn" type="submit">찾기</button>
-					<button class="cancelBtn" type="reset">취소</button>
+					<button class="cancelBtn" type="reset" onclick="history.go(-1)">취소</button>
 				</div>
 			</c:if>
 			<c:if test="${dto != null }">
@@ -109,7 +110,7 @@ fieldset {
 				<alert style="color: red;">회원찾기 실패! 이메일과 전화번호 확인해주세요.</alert>
 			</c:if>
 			</fieldset>
-		</div><!-- findIdWrap end -->
+		</div> <!-- findIdWrap end -->
 	</div> <!-- findId end -->
 	</form>
 </div> <!-- main end -->

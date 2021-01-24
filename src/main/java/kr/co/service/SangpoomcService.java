@@ -19,6 +19,10 @@ public interface SangpoomcService {
 	//그림만 가져오기
 	public SangpoomcVO selectimg(int sno)throws Exception;
 	
+	//그냥카운트
+	public int countno(IpchalVO ipchalvo)throws Exception;
+	
+	
 	
 	
 	//입찰

@@ -150,6 +150,11 @@
 	where sno=#{sno}	
 	</select>
 	
+	<select id="count_no"  resultType="int">
+	select count(*)
+	FROM ipchal	
+	</select>
+	
 	
 	<select id="listCount" resultType="int">
 	<![CDATA[
